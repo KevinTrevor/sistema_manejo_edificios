@@ -5,10 +5,18 @@
  */
 package ClasesPrincipales;
 
+import Lista.*;
+
 /**
  *
- * @author Alberto Gutiérrez
+ * 
  */
 public class Empresa {
+    public ListaEnlazada<Edificio> edificios;
     
+    public Empresa() {
+        this.edificios = new ListaEnlazada<>();
+    }
+    
+    // GETTER Y SETTER
 }
