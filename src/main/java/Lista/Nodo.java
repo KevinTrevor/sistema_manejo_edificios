@@ -7,8 +7,51 @@ package Lista;
 
 /**
  *
- * @author Alberto Gutiérrez
+ * 
+ * @param <E>
  */
-public class Nodo {
+public class Nodo <E>{
+    public E info;
+    public Nodo siguiente;
+
+    /**
+     *
+     * @param info
+     */
+    public Nodo(E info) {
+        this.info = info;
+        this.siguiente = null;
+    }
     
+    /**
+     *
+     * @return
+     */
+    public E getInfo() {
+        return info;
+    }
+
+    /**
+     *
+     * @param info
+     */
+    public void setInfo(E info) {
+        this.info = info;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Nodo getSiguiente() {
+        return siguiente;
+    }
+
+    /**
+     *
+     * @param siguiente
+     */
+    public void setSiguiente(Nodo siguiente) {
+        this.siguiente = siguiente;
+    }
 }
