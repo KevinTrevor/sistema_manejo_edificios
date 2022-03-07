@@ -11,8 +11,8 @@ package Lista;
  * @param <E>
  */
 public class ListaEnlazada <E>{
-    public Nodo inicio;
-    public Nodo fin;
+    public Nodo<E> inicio;
+    public Nodo<E> fin;
 
     /**
      *
@@ -92,7 +92,9 @@ public class ListaEnlazada <E>{
             this.setFin(auxiliar);
         }
     }
-
+    
+    // GETTER Y SETTER
+    
     /**
      *
      * @return

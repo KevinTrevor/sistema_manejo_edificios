@@ -7,8 +7,100 @@ package ClasesPrincipales;
 
 /**
  *
- * @author Alberto Gutiérrez
+ * 
  */
 public class Persona {
+    public String nombre, apellido, correo, telefono;
+
+    /**
+     *
+     */
+    public Persona() {
+        this.nombre = null;
+        this.apellido = null;
+        this.correo = null;
+        this.telefono = null;
+    }
+    
+    /**
+     *
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param telefono
+     */
+    public Persona(String nombre, String apellido, String correo, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.telefono = telefono;
+    }
+
+    // GETTER Y SETTER
+    
+    /**
+     *
+     * @return
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getApellido() {
+        return apellido;
+    }
+
+    /**
+     *
+     * @param apellido
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     *
+     * @param correo
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     *
+     * @param telefono
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
     
 }

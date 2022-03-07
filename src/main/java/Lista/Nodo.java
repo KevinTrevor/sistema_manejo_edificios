@@ -23,6 +23,8 @@ public class Nodo <E>{
         this.siguiente = null;
     }
     
+    // GETTER Y SETTER
+    
     /**
      *
      * @return
