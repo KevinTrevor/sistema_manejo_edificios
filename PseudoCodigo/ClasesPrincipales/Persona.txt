@@ -1,0 +1,19 @@
+Persona = clase de
+
+            <--Atributos--->
+          nombre: cadena
+          apellido: cadena
+          correo: cadena
+          telefono : cadena
+          
+            <--Metodos--->
+          <---Constructor--->
+          Metodo Persona(cadena:_nombre,cadena:_apellido,cadena:_correo,cadena:_telefono)
+          nombre <- _nombre
+          apellido <- _apellido
+          correo <- _correo
+          telefono <- _telefono
+
+
+
+

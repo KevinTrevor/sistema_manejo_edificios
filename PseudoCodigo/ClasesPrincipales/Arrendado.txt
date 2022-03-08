@@ -1,0 +1,14 @@
+
+
+Hereda de Persona
+Arrendado = clase de
+                <---Atributos--->
+            FechaAsignacion:LocalDate <--Tipo de dato de Java-->
+
+                <---Metodos--->
+            <--Constructor-->
+            Metodo Arrendado(cadena:_nombre,cadena:_apellido,cadena:_telefono,cadena:_correo,LocalDate:_FechaAsignacion)
+            Persona(_nombre,_apellido,_telefono,_correo)
+            FechaAsignacion <- _FechaAsignacion
+
+

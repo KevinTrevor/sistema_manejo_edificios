@@ -1,0 +1,70 @@
+ListaEnlazada = clase de 
+                    <--Atributos--->
+                inicio: Nodo del tipo especificado
+                fin: Nodo del tipo especificado
+
+                    <---Metodos--->
+                <--Constructor--->
+
+                Metodo ListaEnlazada()
+                inicio <- Nulo
+                fin <- Nulo
+
+                Metodo EsVacia():booleano
+
+                EsVacia <- inicio = Nulo
+
+                <--El parametro recibido sera del tipo que se especifique la lista en un inicio--->
+
+
+                Metodo InsertarInicio(E: dato)
+
+                nuevo_nodo: Nodo del tipo especificado
+                nuevo_nodo <- Nuevo(Nodo(dato))
+                Si(EsVacia())Entonces
+                    inicio<- nuevo_nodo
+                    fin<- nuevo_nodo
+                Sino
+                    nuevo_nodo.siguiente <- inicio
+                    inicio<- nuevo_nodo
+                Finsi
+
+                Metodo
+                
+
+                Metodo InsertarFin(E:dato)
+                nuevo_nodo: Nodo del tipo especificado
+                nuevo_nodo <- Nuevo(Nodo(dato))
+
+                Si(EsVacia())Entonces
+                    inicio <- nuevo_nodo
+                    fin<- nuevo)nuevo_nodo
+                Sino
+                    fin.siguiente <- nuevo_nodo
+                    fin <- nuevo_nodo
+                Finsi
+
+
+                Metodo eliminarInicio()
+                Si(EsVacia()) Entonces
+                    Escribir "La lista esta vacia"
+                Sino
+                    auxiliar: Nodo del tipo especificado
+                    auxiliar <- inicio.siguiente
+                    inicio.siguiente  <- Nulo
+                    inicio <- auxiliar
+                Finsi
+
+                Metodo eliminarFin()
+                Si(EsVacia()) Entonces
+                    Escribir "La lista esta vacia"
+                Sino
+                    auxiliar: Nodo del tipo especificado
+                    auxiliar <- inicio
+
+                    Mientras(auxiliar.siguiente <> fin)Hacer
+                        auxiliar<- auxiliar.siguiente
+                    Finmientras
+                    auxiliar.siguiente <- Nulo
+                    fin <- auxiliar
+                Finsi

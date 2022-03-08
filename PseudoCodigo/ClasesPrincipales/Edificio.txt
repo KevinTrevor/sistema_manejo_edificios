@@ -1,0 +1,25 @@
+Edificio = clase de 
+            <-- Atributos -->
+           codigo: cadena
+           identificacion:cadena
+           estado:cadena
+           direccion:cadena
+           cedulaEncargado:cadena
+           fechaCreacion:LocalDate <--Tipo de dato Fecha en Java--->
+           pisos: ListaEnlazada de Piso
+           encargados: ListaEnlazada de Encargado
+           arrendatarios: ListaEnlazada de Arrendado
+           
+            <--Metodos-->
+
+           <--Constructor--->
+           Metodo Edificio(cadena:_codigo,cadena:_identificacion,cadena:_estado,cadena:_cedulaEncargado,LocalDate _fechaCreacion)
+           codigo <- _codigo
+           identificacion <- _identificacion
+           estado <- _estado
+           cedulaEncargado <- _cedulaEncargado
+           fechaCreacion <- _fechaCreacion
+
+           pisos  <- Nuevo(ListaEnlazada())
+           encargados<- Nuevo(ListaEnlazada())
+           arrendatarios <- Nuevo(ListaEnlazada())

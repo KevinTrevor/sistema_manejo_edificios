@@ -1,0 +1,15 @@
+Hereda de Persona
+Encargado = clase de
+
+                <---Atributos --->
+            telefonoMovil:cadena
+            fechaContrato:LocalDate <---Tipo de dato de java--->
+
+                <---Metodos --->
+
+            <--Constructor--->
+            Metodo Encargado(cadena:_nombre,cadena:_apellido,cadena:_correo,cadena:_telefono,cadena:_telefonoMovil,LocalDate:_fechaContrato)
+            Persona(_nombre,_apellido,_correo,_telefono)
+            telefonoMovil <- _telefonoMovil
+            fechaContrato <- _fechaContrato
+

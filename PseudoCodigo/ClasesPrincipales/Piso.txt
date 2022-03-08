@@ -1,0 +1,18 @@
+Piso = clase de
+        <--Atributos--->
+       numeroPiso:entero
+       cedulaEncargado:cadena
+       fechaRegistro:LocalDate <---Tipo de dato de Java --->
+       locales: ListaEnlazada de Local
+
+
+        <---Metodos--->
+        
+       <-Constructor->
+       Metodo Piso(entero:_numeroPiso,cadena:_cedulaEncargado,LocalDate:_fechaRegistro)
+
+       numeroPiso<- _numeroPiso
+       cedulaEncargado <- _cedulaEncargado
+       fechaRegistro <- _fechaRegistro
+
+       locales <- Nuevo(ListaEnlazada())

@@ -1,0 +1,17 @@
+Pago = clase de
+
+        <--Atributos--->
+       mes,fechaPago: LocalDate <--Tipo de dato de Java--->
+       montoCancelado,montoRestante: real
+       CedulaArrendatario:cadena
+
+
+        <--Metodos--->
+
+       <---Constructor--->
+       Metodo Pago(LocalDate _mes,LocalDate _fechaPago,real:_montoCancelado,real:montoRestante,cadena:_cedulaArrendatario)
+       mes <- mes 
+       fechaPago <- _fechaPago
+       montoCancelado <- _montoCancelado
+       montoRestante <- _montoRestante
+       cedulaArrendatario <- _cedulaArrendatario
