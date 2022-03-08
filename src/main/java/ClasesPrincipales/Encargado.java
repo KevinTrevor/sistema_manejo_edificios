@@ -39,6 +39,15 @@ public class Encargado extends Persona {
         this.fechaContrato = fechaContrato;
     }
     
+    public int compareTo(Encargado comparator){
+        return this.getCedula().compareTo(comparator.getCedula());
+    }
+    
+    @Override
+    public boolean equals(Object busqueda){
+        return this.getCedula().compareTo((String) busqueda) == 0;
+    }
+    
     public void modificarEncargado(String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato){
     
     }
@@ -78,7 +87,17 @@ public class Encargado extends Persona {
     public void setFechaContrato(LocalDate fechaContrato) {
         this.fechaContrato = fechaContrato;
     }
-
+    
+    @Override
+    public String getCedula(){
+        return super.getCedula();
+    }
+    
+    @Override
+    public void setCedula(String cedula){
+        super.setCedula(cedula);
+    }
+    
     @Override
     public String getNombre() {
         return super.getNombre();

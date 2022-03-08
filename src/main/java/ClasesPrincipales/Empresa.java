@@ -18,8 +18,12 @@ public class Empresa {
         this.edificios = new ListaEnlazada<>();
     }
     
+    public void agregarEdificio(Edificio nuevoEdificio){
+        this.getEdificios().insertar(nuevoEdificio);
+    }
+    
     // GETTER Y SETTER
-
+    
     /**
      *
      * @return

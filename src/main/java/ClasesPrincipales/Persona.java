@@ -44,6 +44,24 @@ public class Persona {
     }
 
     // GETTER Y SETTER
+
+    /**
+     *
+     * @return
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     *
+     * @param cedula
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+    
+    
     
     /**
      *
@@ -108,6 +126,4 @@ public class Persona {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
 }

@@ -43,15 +43,32 @@ public class Edificio {
     }
     
     public void agregarEncargado(Encargado nuevoEncargado){
-        this.getEncargados().insertarFin(nuevoEncargado);
+        this.getEncargados().insertar(nuevoEncargado);
     }
     
     public void agregarPisos(Piso nuevoPiso){
-        this.getPisos().insertarFin(nuevoPiso);
+        this.getPisos().insertar(nuevoPiso);
     }
     
     public void agregarArrendatario(Arrendado nuevoArrendado){
-        this.getArrendatarios().insertarFin(nuevoArrendado);
+        this.getArrendatarios().insertar(nuevoArrendado);
+    }
+    
+    // COMPARACIONES
+
+    /**
+     *
+     * @param comparator
+     * @return
+     */
+    
+    public int compareTo(Edificio comparator){
+        return this.getCodigo().compareTo(comparator.getCodigo());
+    }
+    
+    @Override
+    public boolean equals(Object busqueda){
+        return this.getCodigo().compareTo((String) busqueda) == 0;
     }
     
     // GETTER Y SETTER

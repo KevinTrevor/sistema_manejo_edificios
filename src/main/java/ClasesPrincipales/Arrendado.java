@@ -36,6 +36,19 @@ public class Arrendado extends Persona{
         this.fechaAsignacion = fechaAsignacion;
     }
     
+    /**
+     *
+     * @param comparator
+     * @return
+     */
+    public int compareTo(Arrendado comparator){
+        return this.getCedula().compareTo(comparator.getCedula());
+    }
+    
+    @Override
+    public boolean equals(Object busqueda){
+        return this.getCedula().compareTo((String) busqueda) == 0;
+    }
     
     // GETTER Y SETER
 
@@ -54,7 +67,17 @@ public class Arrendado extends Persona{
     public void setFechaAsignacion(LocalDate fechaAsignacion) {
         this.fechaAsignacion = fechaAsignacion;
     }
-
+    
+    @Override
+    public String getCedula(){
+        return super.getCedula();
+    }
+    
+    @Override
+    public void setCedula(String cedula){
+        super.setCedula(cedula);
+    }
+    
     @Override
     public String getNombre() {
         return super.getNombre();

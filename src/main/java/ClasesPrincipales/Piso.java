@@ -42,13 +42,13 @@ public class Piso {
         
     }
     
-    
     public int compareTo(Piso comparator){
-        return 0;
+        return this.getNumeroPiso().compareTo(comparator.getNumeroPiso());
     }
     
-    public boolean equals(Integer busqueda){
-        return this.getNumeroPiso().intValue() == busqueda.intValue();
+    @Override
+    public boolean equals(Object busqueda){
+        return this.getNumeroPiso().compareTo((Integer) busqueda) == 0;
     }
     
     // GETTER Y SETTER
@@ -101,4 +101,14 @@ public class Piso {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }    
+
+    /**
+     *
+     * @return
+     */
+    public ListaEnlazada<Local> getLocales() {
+        return locales;
+    }
+    
+    
 }

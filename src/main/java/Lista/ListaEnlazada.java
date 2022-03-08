@@ -25,12 +25,18 @@ public class ListaEnlazada <E>{
     public boolean estaVacio(){
         return this.inicio == null;
     }
+    
+    public void insertar(E dato){
+    
+    }
+    
+    
     /**
      *
      * @param dato
      */
     public void insertarInicio(E dato){
-        Nodo<E> nuevo = new Nodo(dato);
+        Nodo<E> nuevo = new Nodo<>(dato);
         
         if (this.estaVacio()){
             this.setInicio(nuevo);
@@ -47,7 +53,7 @@ public class ListaEnlazada <E>{
      * @param dato
      */
     public void insertarFin(E dato){
-        Nodo<E> nuevo = new Nodo(dato);
+        Nodo<E> nuevo = new Nodo<>(dato);
         
         if (this.estaVacio()){
             this.setInicio(nuevo);
@@ -99,7 +105,7 @@ public class ListaEnlazada <E>{
      *
      * @return
      */
-    public Nodo getInicio() {
+    public Nodo<E> getInicio() {
         return inicio;
     }
 
@@ -115,7 +121,7 @@ public class ListaEnlazada <E>{
      *
      * @return
      */
-    public Nodo getFin() {
+    public Nodo<E> getFin() {
         return fin;
     }
 

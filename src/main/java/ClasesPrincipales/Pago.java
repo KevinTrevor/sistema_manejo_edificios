@@ -12,7 +12,8 @@ import java.time.LocalDate;
  * 
  */
 public class Pago {
-    private LocalDate mes, fechaPago;
+    private LocalDate fechaPago;
+    private Integer mes;
     private Float montoCancelado, montoRestante;
     private String cedulaActualArrendatario;
 
@@ -24,13 +25,24 @@ public class Pago {
         this.cedulaActualArrendatario = null;
     }
 
-    public Pago(LocalDate mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
+    public Pago(Integer mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
         this.mes = mes;
         this.fechaPago = fechaPago;
         this.montoCancelado = montoCancelado;
         this.montoRestante = montoRestante;
         this.cedulaActualArrendatario = cedulaActualArrendatario;
     }
+    
+    // COMPARACIONES
+    
+    public int compareTo(Pago comparator){
+        return this.getMes().compareTo(comparator.getMes());
+    }
+    
+    @Override
+    public boolean equals(Object busqueda){
+        return this.getMes().compareTo((Integer) busqueda) == 0;
+    }    
     
     public void modificarPago(LocalDate mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario){
     
@@ -42,7 +54,7 @@ public class Pago {
      *
      * @return
      */
-    public LocalDate getMes() {
+    public Integer getMes() {
         return mes;
     }
 
@@ -50,7 +62,7 @@ public class Pago {
      *
      * @param mes
      */
-    public void setMes(LocalDate mes) {
+    public void setMes(Integer mes) {
         this.mes = mes;
     }
 
