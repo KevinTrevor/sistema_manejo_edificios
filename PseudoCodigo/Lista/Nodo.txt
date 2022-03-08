@@ -1,0 +1,14 @@
+Nodo = clase de
+
+        <---Atributos--->
+
+       informacion: E <--Dato Generico de Java, la variable informacion sera del tipo que se especifique--->
+       siguiente:*Nodo
+
+        <---Metodos--->
+
+       <--Constructor--->
+       Metodo Nodo(E: _informacion)
+       informacion <- _informacion
+
+       

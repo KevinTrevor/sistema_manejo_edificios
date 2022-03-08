@@ -1,0 +1,18 @@
+Local = clase de
+
+            <---Atributos--->
+        codigoLocal:cadena
+        cedulaArrendatario:cadena
+        montoMensualidad:real
+        registroPagos:ListaEnlazada de Pago
+
+
+            <---Metodos--->
+
+        <-Constructor->
+        Metodo Local(cadena:_codigoLocal,cadena:_cedulaArrendatario,real:_montoMensualidad)
+        codigoLocal <- _codigoLocal
+        cedulaArrendatario <- _cedulaArrendatario
+        montoMensualidad <- _montoMensualidad
+        registroPagos<- Nueva(ListaEnlazada())
+

@@ -1,0 +1,10 @@
+Empresa = clase de 
+            <---Atributos--->
+
+          edificios: ListaEnlazada de Edificio
+
+            <---Metodos--->
+          <---Constructor--->
+          Metodo Edificio()
+          edificios<- Nuevo(ListaEnlazada())
+        
