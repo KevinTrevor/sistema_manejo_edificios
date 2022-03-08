@@ -12,11 +12,22 @@ import Lista.*;
  * 
  */
 public class Empresa {
-    public ListaEnlazada<Edificio> edificios;
+    private ListaEnlazada<Edificio> edificios;
     
     public Empresa() {
         this.edificios = new ListaEnlazada<>();
     }
     
     // GETTER Y SETTER
+
+    /**
+     *
+     * @return
+     */
+
+    public ListaEnlazada<Edificio> getEdificios() {
+        return edificios;
+    }
+    
+    
 }

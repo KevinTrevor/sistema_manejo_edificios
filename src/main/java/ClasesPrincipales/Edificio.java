@@ -12,11 +12,11 @@ import java.time.LocalDate;
  * 
  */
 public class Edificio {
-    public String codigo, identificacion, estado, direccion, cedulaEncargado;
-    public LocalDate fechaCreacion;
-    public ListaEnlazada<Piso> pisos;
-    public ListaEnlazada<Encargado> encargados;
-    public ListaEnlazada<Arrendado> arrendatarios;
+    private String codigo, identificacion, estado, direccion, cedulaEncargado;
+    private LocalDate fechaCreacion;
+    private ListaEnlazada<Piso> pisos;
+    private ListaEnlazada<Encargado> encargados;
+    private ListaEnlazada<Arrendado> arrendatarios;
 
     public Edificio() {
         this.codigo = null;
@@ -40,6 +40,18 @@ public class Edificio {
         this.pisos = new ListaEnlazada<>();
         this.encargados = new ListaEnlazada<>();
         this.arrendatarios = new ListaEnlazada<>();
+    }
+    
+    public void agregarEncargado(Encargado nuevoEncargado){
+        this.getEncargados().insertarFin(nuevoEncargado);
+    }
+    
+    public void agregarPisos(Piso nuevoPiso){
+        this.getPisos().insertarFin(nuevoPiso);
+    }
+    
+    public void agregarArrendatario(Arrendado nuevoArrendado){
+        this.getArrendatarios().insertarFin(nuevoArrendado);
     }
     
     // GETTER Y SETTER
@@ -139,6 +151,30 @@ public class Edificio {
      */
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ListaEnlazada<Piso> getPisos() {
+        return pisos;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ListaEnlazada<Encargado> getEncargados() {
+        return encargados;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ListaEnlazada<Arrendado> getArrendatarios() {
+        return arrendatarios;
     }
     
     

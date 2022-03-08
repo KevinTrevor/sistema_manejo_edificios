@@ -10,12 +10,13 @@ package ClasesPrincipales;
  * 
  */
 public class Persona {
-    public String nombre, apellido, correo, telefono;
+    private String cedula, nombre, apellido, correo, telefono;
 
     /**
      *
      */
     public Persona() {
+        this.cedula = null;
         this.nombre = null;
         this.apellido = null;
         this.correo = null;
@@ -24,16 +25,22 @@ public class Persona {
     
     /**
      *
+     * @param cedula
      * @param nombre
      * @param apellido
      * @param correo
      * @param telefono
      */
-    public Persona(String nombre, String apellido, String correo, String telefono) {
+    public Persona(String cedula, String nombre, String apellido, String correo, String telefono) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.telefono = telefono;
+    }
+    
+    public void modificarPersona(){
+    
     }
 
     // GETTER Y SETTER

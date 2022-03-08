@@ -12,9 +12,9 @@ import java.time.LocalDate;
  * 
  */
 public class Pago {
-    public LocalDate mes, fechaPago;
-    public Float montoCancelado, montoRestante;
-    public String cedulaActualArrendatario;
+    private LocalDate mes, fechaPago;
+    private Float montoCancelado, montoRestante;
+    private String cedulaActualArrendatario;
 
     public Pago() {
         this.mes = null;
@@ -30,6 +30,10 @@ public class Pago {
         this.montoCancelado = montoCancelado;
         this.montoRestante = montoRestante;
         this.cedulaActualArrendatario = cedulaActualArrendatario;
+    }
+    
+    public void modificarPago(LocalDate mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario){
+    
     }
     
     // GETTER Y SETTER

@@ -10,9 +10,9 @@ import Lista.*;
  * @author Alberto Gutiérrez
  */
 public class Local {
-    public String codigoLocal, cedulaArrendatario;
-    public Float montoMensualidad;
-    public ListaEnlazada<Pago> registroPagos;
+    private String codigoLocal, cedulaArrendatario;
+    private Float montoMensualidad;
+    private ListaEnlazada<Pago> registroPagos;
 
     /**
      *

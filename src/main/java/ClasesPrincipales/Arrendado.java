@@ -6,14 +6,13 @@
 package ClasesPrincipales;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 /**
  *
  * 
  */
 public class Arrendado extends Persona{
-    public LocalDate fechaAsignacion;
+    private LocalDate fechaAsignacion;
 
     /**
      *
@@ -25,15 +24,15 @@ public class Arrendado extends Persona{
 
     /**
      *
-     * @param fecha_asignacion
+     * @param cedula
      * @param nombre
      * @param apellido
      * @param correo
      * @param telefono
      * @param fechaAsignacion
      */
-    public Arrendado(String fecha_asignacion, String nombre, String apellido, String correo, String telefono, LocalDate fechaAsignacion) {
-        super(nombre, apellido, correo, telefono);
+    public Arrendado(String cedula, String nombre, String apellido, String correo, String telefono, LocalDate fechaAsignacion) {
+        super(cedula, nombre, apellido, correo, telefono);
         this.fechaAsignacion = fechaAsignacion;
     }
     
@@ -58,46 +57,41 @@ public class Arrendado extends Persona{
 
     @Override
     public String getNombre() {
-        return nombre;
+        return super.getNombre();
     }
 
     @Override
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        super.setNombre(nombre);
     }
 
     @Override
     public String getApellido() {
-        return apellido;
+        return super.getApellido();
     }
 
     @Override
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        super.setApellido(apellido);
     }
 
     @Override
     public String getCorreo() {
-        return correo;
+        return super.getCorreo();
     }
 
     @Override
     public void setCorreo(String correo) {
-        this.correo = correo;
+        super.setCorreo(correo);
     }
 
     @Override
     public String getTelefono() {
-        return telefono;
+        return super.getTelefono();
     }
 
     @Override
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-    
-    public static void main(String args[]){
-        LocalDate fecha = LocalDate.now();
-        System.out.println(fecha);
+        super.setTelefono(telefono);
     }
 }

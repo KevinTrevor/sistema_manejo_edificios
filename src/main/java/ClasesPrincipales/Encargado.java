@@ -11,8 +11,8 @@ import java.time.LocalDate;
  * 
  */
 public class Encargado extends Persona {
-    public String telefonoMovil;
-    public LocalDate fechaContrato;
+    private String telefonoMovil;
+    private LocalDate fechaContrato;
     
     /**
      *
@@ -23,11 +23,26 @@ public class Encargado extends Persona {
         this.fechaContrato = null;
     }
 
-    public Encargado(String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato) {
-        super(nombre, apellido, correo, telefono);
+    /**
+     *
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param telefono
+     * @param telefonoMovil
+     * @param fechaContrato
+     */
+    public Encargado(String cedula, String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato) {
+        super(cedula, nombre, apellido, correo, telefono);
         this.telefonoMovil = telefonoMovil;
         this.fechaContrato = fechaContrato;
     }
+    
+    public void modificarEncargado(String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato){
+    
+    }
+    
     
     // GETTER Y SETTER
     
@@ -66,41 +81,41 @@ public class Encargado extends Persona {
 
     @Override
     public String getNombre() {
-        return nombre;
+        return super.getNombre();
     }
 
     @Override
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        super.setNombre(nombre);
     }
 
     @Override
     public String getApellido() {
-        return apellido;
+        return super.getApellido();
     }
 
     @Override
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        super.setApellido(apellido);
     }
 
     @Override
     public String getCorreo() {
-        return correo;
+        return super.getCorreo();
     }
 
     @Override
     public void setCorreo(String correo) {
-        this.correo = correo;
+        super.setCorreo(correo);
     }
 
     @Override
     public String getTelefono() {
-        return telefono;
+        return super.getTelefono();
     }
 
     @Override
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        super.setTelefono(telefono);
     }
 }

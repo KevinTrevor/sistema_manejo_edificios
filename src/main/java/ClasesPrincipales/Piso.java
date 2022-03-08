@@ -13,10 +13,10 @@ import java.time.LocalDate;
  * 
  */
 public class Piso {
-    public Integer numeroPiso;
-    public String cedulaEncargado;
-    public LocalDate fechaRegistro;
-    public ListaEnlazada<Local> locales;
+    private Integer numeroPiso;
+    private String cedulaEncargado;
+    private LocalDate fechaRegistro;
+    private ListaEnlazada<Local> locales;
 
     /**
      *
@@ -40,6 +40,15 @@ public class Piso {
         this.fechaRegistro = fechaRegistro;
         this.locales = new ListaEnlazada<>();
         
+    }
+    
+    
+    public int compareTo(Piso comparator){
+        return 0;
+    }
+    
+    public boolean equals(Integer busqueda){
+        return this.getNumeroPiso().intValue() == busqueda.intValue();
     }
     
     // GETTER Y SETTER
