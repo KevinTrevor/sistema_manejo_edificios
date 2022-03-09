@@ -11,8 +11,8 @@ package Lista;
  * @param <E>
  */
 public class Nodo <E>{
-    public E info;
-    public Nodo siguiente;
+    private E info;
+    private Nodo<E> siguiente;
 
     /**
      *
@@ -45,7 +45,7 @@ public class Nodo <E>{
      *
      * @return
      */
-    public Nodo getSiguiente() {
+    public Nodo<E> getSiguiente() {
         return siguiente;
     }
 
@@ -53,7 +53,7 @@ public class Nodo <E>{
      *
      * @param siguiente
      */
-    public void setSiguiente(Nodo siguiente) {
+    public void setSiguiente(Nodo<E> siguiente) {
         this.siguiente = siguiente;
     }
 }

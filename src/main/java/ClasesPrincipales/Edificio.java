@@ -43,15 +43,15 @@ public class Edificio {
     }
     
     public void agregarEncargado(Encargado nuevoEncargado){
-        this.getEncargados().insertar(nuevoEncargado);
+        
     }
     
     public void agregarPisos(Piso nuevoPiso){
-        this.getPisos().insertar(nuevoPiso);
+       
     }
     
     public void agregarArrendatario(Arrendado nuevoArrendado){
-        this.getArrendatarios().insertar(nuevoArrendado);
+        
     }
     
     // COMPARACIONES

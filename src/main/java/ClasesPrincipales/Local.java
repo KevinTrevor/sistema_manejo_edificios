@@ -5,7 +5,6 @@
  */
 package ClasesPrincipales;
 import Lista.*;
-import java.util.Objects;
 /**
  *
  * @author Alberto Gutiérrez
@@ -38,13 +37,16 @@ public class Local {
         this.registroPagos = new ListaEnlazada<>();
     }
     
-    public int compareTo(Local comparator){
-        return this.getCodigoLocal().compareTo(comparator.getCodigoLocal());
-    }
+    // COMPARACIONES
     
     @Override
     public boolean equals(Object busqueda){
-        return this.getCodigoLocal().compareTo((String) busqueda) == 0;
+        return this.getCodigoLocal().equals((String) busqueda);
+    }
+    
+    @Override
+    public String toString(){
+        return "Código Local: " + this.getCodigoLocal() + "\nCédula del Arrendatario: " + this.getCedulaArrendatario() + "\nMonto de la mensualidad: " + this.getMontoMensualidad().toString();
     }
     
     // GETTER Y SETTER

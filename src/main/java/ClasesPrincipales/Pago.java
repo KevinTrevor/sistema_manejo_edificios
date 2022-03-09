@@ -25,6 +25,14 @@ public class Pago {
         this.cedulaActualArrendatario = null;
     }
 
+    /**
+     *
+     * @param mes
+     * @param fechaPago
+     * @param montoCancelado
+     * @param montoRestante
+     * @param cedulaActualArrendatario
+     */
     public Pago(Integer mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
         this.mes = mes;
         this.fechaPago = fechaPago;
@@ -34,10 +42,6 @@ public class Pago {
     }
     
     // COMPARACIONES
-    
-    public int compareTo(Pago comparator){
-        return this.getMes().compareTo(comparator.getMes());
-    }
     
     @Override
     public boolean equals(Object busqueda){

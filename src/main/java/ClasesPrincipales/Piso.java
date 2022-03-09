@@ -42,13 +42,10 @@ public class Piso {
         
     }
     
-    public int compareTo(Piso comparator){
-        return this.getNumeroPiso().compareTo(comparator.getNumeroPiso());
-    }
-    
     @Override
     public boolean equals(Object busqueda){
-        return this.getNumeroPiso().compareTo((Integer) busqueda) == 0;
+        Piso comparar = (Piso) busqueda;
+        return this.getNumeroPiso().compareTo(comparar.getNumeroPiso()) == 0;
     }
     
     // GETTER Y SETTER
@@ -110,5 +107,18 @@ public class Piso {
         return locales;
     }
     
-    
+    public static void main(String args[]){
+        Piso nuevoPiso = new Piso(1, "29582382", LocalDate.now());
+        
+        Float mensualidadLocal1 = new Float(250.50);
+        Local nuevoLocal = new Local("1", "12222773", mensualidadLocal1);
+         
+        nuevoPiso.getLocales().insertarInicio(nuevoLocal);
+        
+        System.out.println();
+        
+        nuevoPiso.getLocales().eliminarDato((Object) "2");
+        
+        System.out.println(nuevoPiso.getLocales().buscarDato("2").toString());
+    }
 }

@@ -19,7 +19,7 @@ public class Empresa {
     }
     
     public void agregarEdificio(Edificio nuevoEdificio){
-        this.getEdificios().insertar(nuevoEdificio);
+        
     }
     
     // GETTER Y SETTER

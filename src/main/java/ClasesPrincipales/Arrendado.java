@@ -36,15 +36,6 @@ public class Arrendado extends Persona{
         this.fechaAsignacion = fechaAsignacion;
     }
     
-    /**
-     *
-     * @param comparator
-     * @return
-     */
-    public int compareTo(Arrendado comparator){
-        return this.getCedula().compareTo(comparator.getCedula());
-    }
-    
     @Override
     public boolean equals(Object busqueda){
         return this.getCedula().compareTo((String) busqueda) == 0;

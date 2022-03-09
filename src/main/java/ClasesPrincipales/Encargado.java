@@ -39,10 +39,6 @@ public class Encargado extends Persona {
         this.fechaContrato = fechaContrato;
     }
     
-    public int compareTo(Encargado comparator){
-        return this.getCedula().compareTo(comparator.getCedula());
-    }
-    
     @Override
     public boolean equals(Object busqueda){
         return this.getCedula().compareTo((String) busqueda) == 0;
