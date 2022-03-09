@@ -44,9 +44,13 @@ public class Local {
         return this.getCodigoLocal().equals((String) busqueda);
     }
     
+    // MOSTRAR
+    
     @Override
     public String toString(){
-        return "Código Local: " + this.getCodigoLocal() + "\nCédula del Arrendatario: " + this.getCedulaArrendatario() + "\nMonto de la mensualidad: " + this.getMontoMensualidad().toString();
+        return "Código Local: " + this.getCodigoLocal() + 
+                "\nCédula del Arrendatario: " + this.getCedulaArrendatario() + 
+                "\nMonto de la mensualidad: " + this.getMontoMensualidad().toString();
     }
     
     // GETTER Y SETTER

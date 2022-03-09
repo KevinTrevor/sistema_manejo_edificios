@@ -36,9 +36,19 @@ public class Arrendado extends Persona{
         this.fechaAsignacion = fechaAsignacion;
     }
     
+    // COMPARACIONES
+    
     @Override
     public boolean equals(Object busqueda){
         return this.getCedula().compareTo((String) busqueda) == 0;
+    }
+    
+    // MOSTRAR
+    
+    @Override
+    public String toString(){
+        return "Nombre completo del arrendatario: " + this.getNombre() + 
+                " " + this.getApellido();
     }
     
     // GETTER Y SETER

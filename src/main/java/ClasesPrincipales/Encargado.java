@@ -33,18 +33,30 @@ public class Encargado extends Persona {
      * @param telefonoMovil
      * @param fechaContrato
      */
-    public Encargado(String cedula, String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato) {
+    public Encargado(String cedula, String nombre, String apellido, String correo, 
+            String telefono, String telefonoMovil, LocalDate fechaContrato) {
         super(cedula, nombre, apellido, correo, telefono);
         this.telefonoMovil = telefonoMovil;
         this.fechaContrato = fechaContrato;
     }
+    
+    // COMPARACIONES
     
     @Override
     public boolean equals(Object busqueda){
         return this.getCedula().compareTo((String) busqueda) == 0;
     }
     
-    public void modificarEncargado(String nombre, String apellido, String correo, String telefono, String telefonoMovil, LocalDate fechaContrato){
+    // MOSTRAR
+    
+    @Override
+    public String toString(){
+        return "Nombre completo del encargado: " + this.getNombre() + 
+                " " + this.getApellido();
+    }
+    
+    public void modificarEncargado(String nombre, String apellido, String correo, 
+            String telefono, String telefonoMovil, LocalDate fechaContrato){
     
     }
     
@@ -132,5 +144,12 @@ public class Encargado extends Persona {
     @Override
     public void setTelefono(String telefono) {
         super.setTelefono(telefono);
+    }
+    
+    public static void main(String args[]){
+        Encargado nuevoEncargado = new Encargado("29582382", "Kevin", "Rojas", 
+                "kevintrevor@gmail.com", "02952690018", "04127955420", LocalDate.now());
+        
+        System.out.println(nuevoEncargado.toString());
     }
 }

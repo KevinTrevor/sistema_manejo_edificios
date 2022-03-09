@@ -30,7 +30,8 @@ public class Edificio {
         this.arrendatarios = null;
     }
 
-    public Edificio(String codigo, String identificacion, String estado, String direccion, String cedulaEncargado, LocalDate fechaCreacion, ListaEnlazada<Piso> pisos, ListaEnlazada<Encargado> encargados, ListaEnlazada<Arrendado> arrendatarios) {
+    public Edificio(String codigo, String identificacion, String estado, 
+            String direccion, String cedulaEncargado, LocalDate fechaCreacion) {
         this.codigo = codigo;
         this.identificacion = identificacion;
         this.estado = estado;
@@ -55,20 +56,22 @@ public class Edificio {
     }
     
     // COMPARACIONES
-
-    /**
-     *
-     * @param comparator
-     * @return
-     */
-    
-    public int compareTo(Edificio comparator){
-        return this.getCodigo().compareTo(comparator.getCodigo());
-    }
     
     @Override
     public boolean equals(Object busqueda){
         return this.getCodigo().compareTo((String) busqueda) == 0;
+    }
+    
+    // MOSTRAR
+    
+    @Override
+    public String toString(){
+        return "Código del edificio: " + this.getCodigo() + 
+                "\nNombre del edificio: " + this.getIdentificacion() + 
+                "\nEstado: " + this.getEstado() + 
+                "\nDirrecion del edificio: " + this.getDireccion() +
+                "\nEncargado del edificio: " + this.getCedulaEncargado() +
+                "\nFecha de creación: " + this.getFechaCreacion();
     }
     
     // GETTER Y SETTER
@@ -194,5 +197,10 @@ public class Edificio {
         return arrendatarios;
     }
     
-    
+    public static void main(String args[]){
+        Edificio nuevoEdificio = new Edificio("1", "Sunsol", "Nueva Esparta", 
+                "Porlamar, Calle Zamora", "29582382", LocalDate.now());
+        
+        System.out.println(nuevoEdificio.toString());
+    }
 }

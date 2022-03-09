@@ -39,8 +39,10 @@ public class Persona {
         this.telefono = telefono;
     }
     
-    public void modificarPersona(){
-    
+    @Override
+    public String toString(){
+        return "Nombre completo: " + this.getNombre() + 
+                " " + this.getApellido();
     }
 
     // GETTER Y SETTER

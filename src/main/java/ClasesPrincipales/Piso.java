@@ -42,12 +42,29 @@ public class Piso {
         
     }
     
+    // COMPARACIONES
+    
     @Override
     public boolean equals(Object busqueda){
         Piso comparar = (Piso) busqueda;
         return this.getNumeroPiso().compareTo(comparar.getNumeroPiso()) == 0;
     }
     
+    // MOSTRAR
+    
+    @Override
+    public String toString(){
+        String locales = "";
+        Nodo<Local> local = this.getLocales().getInicio();
+        while(local != null){
+            locales = locales + local.getInfo().toString() + "\n=========================================\n";
+            local = local.getSiguiente();
+        }
+        return "Número piso: " + this.getNumeroPiso().toString() + 
+                "\nCédula del encargado: " + this.getCedulaEncargado() + 
+                "\nCantidad de locales: " + this.getLocales().getSize() +
+                "\nLocales: \n" + locales;
+    }
     // GETTER Y SETTER
 
     /**
@@ -110,15 +127,14 @@ public class Piso {
     public static void main(String args[]){
         Piso nuevoPiso = new Piso(1, "29582382", LocalDate.now());
         
-        Float mensualidadLocal1 = new Float(250.50);
-        Local nuevoLocal = new Local("1", "12222773", mensualidadLocal1);
+        Float mensualidadLocal = new Float(250.50);
+        Float mensualidadLocal2 = new Float(5000);
+        Local nuevoLocal = new Local("1", "12222773", mensualidadLocal);
+        Local nuevoLocal2 = new Local("2", "29668074", mensualidadLocal2);
          
-        nuevoPiso.getLocales().insertarInicio(nuevoLocal);
+        nuevoPiso.getLocales().insertarFin(nuevoLocal);
+        nuevoPiso.getLocales().insertarFin(nuevoLocal2);
         
-        System.out.println();
-        
-        nuevoPiso.getLocales().eliminarDato((Object) "2");
-        
-        System.out.println(nuevoPiso.getLocales().buscarDato("2").toString());
+        System.out.println(nuevoPiso.toString());
     }
 }

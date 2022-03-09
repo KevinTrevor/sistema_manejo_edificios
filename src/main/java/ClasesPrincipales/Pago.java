@@ -13,9 +13,8 @@ import java.time.LocalDate;
  */
 public class Pago {
     private LocalDate fechaPago;
-    private Integer mes;
     private Float montoCancelado, montoRestante;
-    private String cedulaActualArrendatario;
+    private String cedulaActualArrendatario, mes;
 
     public Pago() {
         this.mes = null;
@@ -33,7 +32,7 @@ public class Pago {
      * @param montoRestante
      * @param cedulaActualArrendatario
      */
-    public Pago(Integer mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
+    public Pago(String mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
         this.mes = mes;
         this.fechaPago = fechaPago;
         this.montoCancelado = montoCancelado;
@@ -45,11 +44,18 @@ public class Pago {
     
     @Override
     public boolean equals(Object busqueda){
-        return this.getMes().compareTo((Integer) busqueda) == 0;
-    }    
+        return this.getMes().compareTo((String) busqueda) == 0;
+    }  
     
-    public void modificarPago(LocalDate mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario){
+    // MOSTRAR
     
+    @Override
+    public String toString(){
+        return "Mes a cancelar: " + this.getMes() + 
+                "\nFecha de pago: "  + this.getFechaPago().toString() + 
+                "\nCédula del Actual Arrendatario: " + this.getCedulaActualArrendatario() + 
+                "\nMonto cancelado: " + this.getMontoCancelado().toString() + 
+                "\nMonto restante: " + this.getMontoRestante().toString();
     }
     
     // GETTER Y SETTER
@@ -58,7 +64,7 @@ public class Pago {
      *
      * @return
      */
-    public Integer getMes() {
+    public String getMes() {
         return mes;
     }
 
@@ -66,7 +72,7 @@ public class Pago {
      *
      * @param mes
      */
-    public void setMes(Integer mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
 
@@ -133,4 +139,12 @@ public class Pago {
     public void setCedulaActualArrendatario(String cedulaActualArrendatario) {
         this.cedulaActualArrendatario = cedulaActualArrendatario;
     } 
+    
+    public static void main(String args[]){
+        Float nuevoMontoCancelado = new Float(2506.50);
+        Float nuevoMontoRestante = new Float(5000 - 2506.50);
+        Pago nuevoPago = new Pago("Enero",LocalDate.now(), nuevoMontoCancelado, nuevoMontoRestante, "12222773");
+        
+        System.out.println(nuevoPago.toString());
+    }
 }
