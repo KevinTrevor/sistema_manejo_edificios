@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Lista;
+import ClasesPrincipales.*;
 import java.util.LinkedList;
 
 /**

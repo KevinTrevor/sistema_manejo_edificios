@@ -32,8 +32,39 @@ public class Empresa {
         return edificiosStr;
     }
     
-    public void agregarEdificio(Edificio nuevoEdificio){
-        
+    public void agregarEdificios(Edificio nuevoEdificio){
+       Nodo<Edificio> nuevo = new Nodo<>(nuevoEdificio);
+       ListaEnlazada<Edificio> listaEdificios = this.getEdificios();
+       if (listaEdificios.estaVacio()){
+           listaEdificios.setInicio(nuevo);
+           listaEdificios.setFin(nuevo);
+       }
+       else{
+           Nodo<Edificio> auxiliar = listaEdificios.getInicio();
+           if(nuevoEdificio.getCodigo().compareTo(auxiliar.getInfo().getCodigo()) < 0){
+               nuevo.setSiguiente(auxiliar);
+               listaEdificios.setInicio(nuevo);
+           }
+           else{
+                while(nuevoEdificio.getCodigo().equals(auxiliar.getInfo().getCodigo())){
+                    auxiliar = auxiliar.getSiguiente();
+                }
+           
+                if (auxiliar.getInfo().equals(nuevoEdificio.getCodigo())){
+                    System.out.println("Ya existe un edificio con este código");
+                }
+                else{
+                    if (auxiliar.getInfo().equals(listaEdificios.getFin().getInfo())){
+                        auxiliar.setSiguiente(nuevo);
+                        listaEdificios.setFin(nuevo);
+                    }
+                    else{
+                        nuevo.setSiguiente(auxiliar.getSiguiente());
+                        auxiliar.setSiguiente(nuevo);
+                    }
+                }
+           }
+       }
     }
     
     // GETTER Y SETTER

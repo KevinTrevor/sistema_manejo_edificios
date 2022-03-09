@@ -44,15 +44,46 @@ public class Edificio {
     }
     
     public void agregarEncargado(Encargado nuevoEncargado){
-        
+        this.getEncargados().insertarFin(nuevoEncargado);
     }
     
     public void agregarPisos(Piso nuevoPiso){
-       
+       Nodo<Piso> nuevo = new Nodo<>(nuevoPiso);
+       ListaEnlazada<Piso> listaPisos = this.getPisos();
+       if (listaPisos.estaVacio()){
+           listaPisos.setInicio(nuevo);
+           listaPisos.setFin(nuevo);
+       }
+       else{
+           Nodo<Piso> auxiliar = this.getPisos().getInicio();
+           if(nuevoPiso.getNumeroPiso() < auxiliar.getInfo().getNumeroPiso()){
+               nuevo.setSiguiente(auxiliar);
+               listaPisos.setInicio(nuevo);
+           }
+           else{
+                while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso()){
+                    auxiliar = auxiliar.getSiguiente();
+                }
+           
+                if (auxiliar.getInfo().equals(nuevoPiso.getNumeroPiso())){
+                    System.out.println("Ya existe unedificio con este código");
+                }
+                else{
+                    if (auxiliar.getInfo().equals(listaPisos.getFin().getInfo())){
+                        auxiliar.setSiguiente(nuevo);
+                        listaPisos.setFin(nuevo);
+                    }
+                    else{
+                        nuevo.setSiguiente(auxiliar.getSiguiente());
+                        auxiliar.setSiguiente(nuevo);
+                    }
+                }
+           }
+       }
     }
     
     public void agregarArrendatario(Arrendado nuevoArrendado){
-        
+        this.getArrendatarios().insertarFin(nuevoArrendado);
     }
     
     // COMPARACIONES
