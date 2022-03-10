@@ -91,11 +91,11 @@ public class Edificio {
                 "\nFecha de creación: " + this.getFechaCreacion();
     }
     
-    public Float getMontoEdificioEnMes(String mes){
+    public Float getMontoEnMes(String mes){
         Float montoRecaudado = new Float(0);
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
         while(nodoPiso.getSiguiente() != null){
-            montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoTotalEnMes(mes);
+            montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes);
             nodoPiso.getSiguiente();
         }
         return montoRecaudado;

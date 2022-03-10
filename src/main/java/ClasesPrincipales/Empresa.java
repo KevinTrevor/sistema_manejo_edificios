@@ -36,6 +36,17 @@ public class Empresa {
         return edificiosStr;
     }
     
+    public Float getMontoEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Edificio> nodoEdificio = this.getEdificios().getInicio();
+        while(nodoEdificio.getSiguiente() != null){
+            montoRecaudado = montoRecaudado + nodoEdificio.getInfo().getMontoEnMes(mes);
+            nodoEdificio.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
+    // AGREGAR 
     public void agregarEdificios(Edificio nuevoEdificio){
        Nodo<Edificio> nuevo = new Nodo<>(nuevoEdificio);
        ListaEnlazada<Edificio> listaEdificios = this.getEdificios();

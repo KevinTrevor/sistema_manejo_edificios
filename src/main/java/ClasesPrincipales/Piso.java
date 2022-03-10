@@ -42,7 +42,7 @@ public class Piso {
         
     }
     
-    public Float getMontoTotalEnMes(String mes){
+    public Float getMontoEnMes(String mes){
         Float montoRecaudado = new Float(0);
         Nodo<Local> nodoLocal = this.getLocales().getInicio();
         while(nodoLocal.getSiguiente() != null){
