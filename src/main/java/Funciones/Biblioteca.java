@@ -24,7 +24,7 @@ public class Biblioteca {
 		}
 		return true;
 	}
-	//Verificar si una cadena solo contiene numeros separados por un punto.
+	
 	public static boolean esDecimal(String valor) {
 		String[] numeros = valor.split("\\.");
 		
