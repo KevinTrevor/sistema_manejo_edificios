@@ -97,6 +97,21 @@ public class Edificio {
         }
     }
     
+    public void modificarEdificio(String identificacion, String estado, 
+            String direccion, String cedulaEncargado, LocalDate fechaCreacion){
+        this.setIdentificacion(identificacion);
+        this.setEstado(estado);
+        this.setDireccion(direccion);
+        this.setCedulaEncargado(cedulaEncargado);
+        this.setFechaCreacion(fechaCreacion);
+    }
+    
+    // ELIMINAR
+    
+    public void eliminarPiso(Integer numeroPiso){
+        this.getPisos().eliminarDato(numeroPiso);
+    }
+    
     // MOSTRAR
     
     @Override

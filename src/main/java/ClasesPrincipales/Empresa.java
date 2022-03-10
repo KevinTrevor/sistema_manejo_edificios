@@ -63,7 +63,12 @@ public class Empresa {
     
     public void modificarArrendatario(String cedula, String nombre, String apellido, 
             String correo, String telefono, LocalDate fechaAsignacion){
-        
+        Arrendado arrendatarioBuscado = this.getArrendatarios().buscarDato(cedula);
+        if (arrendatarioBuscado != null) {
+            arrendatarioBuscado.modificarArrendatario(nombre, apellido, correo, telefono, 
+                     fechaAsignacion);
+            this.getArrendatarios().modificarDato(cedula, arrendatarioBuscado);
+        }
     }
     
     public void modificarLocal(String codigo, Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
@@ -77,6 +82,41 @@ public class Empresa {
         }
         else{
             System.out.println("El edificio del local a modificar no se encuentra registrado.");
+        }
+    }
+    
+    public void modificarEdificio(String codigo, String identificacion, String estado, 
+            String direccion, String cedulaEncargado, LocalDate fechaCreacion){
+        
+        Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            edificioBuscado.modificarEdificio(identificacion, estado, direccion, 
+                    cedulaEncargado, fechaCreacion);
+            this.getEdificios().modificarDato(codigo, edificioBuscado);
+        }
+    }
+    
+    // ELIMINAR
+
+    /**
+     *
+     * @param codigo
+     */
+    
+    public void eliminarEdificio(String codigo){
+        this.getEdificios().eliminarDato(codigo);
+    }
+    
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     */
+    public void eliminarPiso(String codigo, Integer numeroPiso){
+        Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            edificioBuscado.eliminarPiso(numeroPiso);
+            this.getEdificios().modificarDato(codigo, edificioBuscado);
         }
     }
     
