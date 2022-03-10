@@ -42,6 +42,16 @@ public class Piso {
         
     }
     
+    public Float getMontoTotalEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Local> nodoLocal = this.getLocales().getInicio();
+        while(nodoLocal.getSiguiente() != null){
+            montoRecaudado = montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes);
+            nodoLocal.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
     // COMPARACIONES
     
     @Override

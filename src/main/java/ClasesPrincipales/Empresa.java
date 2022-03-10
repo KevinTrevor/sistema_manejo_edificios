@@ -14,9 +14,13 @@ import java.time.LocalDate;
  */
 public class Empresa {
     private ListaEnlazada<Edificio> edificios;
+    private ListaEnlazada<Encargado> encargados;
+    private ListaEnlazada<Arrendado> arrendatarios;
     
     public Empresa() {
         this.edificios = new ListaEnlazada<>();
+        this.encargados = new ListaEnlazada<>();
+        this.arrendatarios = new ListaEnlazada<>();
     }
     
     // MOSTRAR
@@ -50,7 +54,7 @@ public class Empresa {
                     auxiliar = auxiliar.getSiguiente();
                 }
            
-                if (auxiliar.getInfo().equals(nuevoEdificio.getCodigo())){
+                if (auxiliar.getInfo().getCodigo().equals(nuevoEdificio.getCodigo())){
                     System.out.println("Ya existe un edificio con este código");
                 }
                 else{
@@ -67,6 +71,16 @@ public class Empresa {
        }
     }
     
+    public void agregarEncargado(Encargado nuevoEncargado){
+        this.getEncargados().insertarFin(nuevoEncargado);
+    }
+    
+    public void agregarArrendatario(Arrendado nuevoArrendado){
+        this.getArrendatarios().insertarFin(nuevoArrendado);
+    }
+    
+    
+    
     // GETTER Y SETTER
     
     /**
@@ -76,6 +90,14 @@ public class Empresa {
 
     public ListaEnlazada<Edificio> getEdificios() {
         return edificios;
+    }
+
+    public ListaEnlazada<Encargado> getEncargados() {
+        return encargados;
+    }
+
+    public ListaEnlazada<Arrendado> getArrendatarios() {
+        return arrendatarios;
     }
     
     public static void main(String args[]){

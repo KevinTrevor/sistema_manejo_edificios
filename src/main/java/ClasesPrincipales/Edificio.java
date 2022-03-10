@@ -15,8 +15,6 @@ public class Edificio {
     private String codigo, identificacion, estado, direccion, cedulaEncargado;
     private LocalDate fechaCreacion;
     private ListaEnlazada<Piso> pisos;
-    private ListaEnlazada<Encargado> encargados;
-    private ListaEnlazada<Arrendado> arrendatarios;
 
     public Edificio() {
         this.codigo = null;
@@ -26,8 +24,6 @@ public class Edificio {
         this.cedulaEncargado = null;
         this.fechaCreacion = null;
         this.pisos = null;
-        this.encargados = null;
-        this.arrendatarios = null;
     }
 
     public Edificio(String codigo, String identificacion, String estado, 
@@ -39,12 +35,6 @@ public class Edificio {
         this.cedulaEncargado = cedulaEncargado;
         this.fechaCreacion = fechaCreacion;
         this.pisos = new ListaEnlazada<>();
-        this.encargados = new ListaEnlazada<>();
-        this.arrendatarios = new ListaEnlazada<>();
-    }
-    
-    public void agregarEncargado(Encargado nuevoEncargado){
-        this.getEncargados().insertarFin(nuevoEncargado);
     }
     
     public void agregarPisos(Piso nuevoPiso){
@@ -65,7 +55,7 @@ public class Edificio {
                     auxiliar = auxiliar.getSiguiente();
                 }
            
-                if (auxiliar.getInfo().equals(nuevoPiso.getNumeroPiso())){
+                if (auxiliar.getInfo().getNumeroPiso().equals(nuevoPiso.getNumeroPiso())){
                     System.out.println("Ya existe unedificio con este código");
                 }
                 else{
@@ -80,10 +70,6 @@ public class Edificio {
                 }
            }
        }
-    }
-    
-    public void agregarArrendatario(Arrendado nuevoArrendado){
-        this.getArrendatarios().insertarFin(nuevoArrendado);
     }
     
     // COMPARACIONES
@@ -103,6 +89,16 @@ public class Edificio {
                 "\nDirrecion del edificio: " + this.getDireccion() +
                 "\nEncargado del edificio: " + this.getCedulaEncargado() +
                 "\nFecha de creación: " + this.getFechaCreacion();
+    }
+    
+    public Float getMontoEdificioEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Piso> nodoPiso = this.getPisos().getInicio();
+        while(nodoPiso.getSiguiente() != null){
+            montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoTotalEnMes(mes);
+            nodoPiso.getSiguiente();
+        }
+        return montoRecaudado;
     }
     
     // GETTER Y SETTER
@@ -210,22 +206,6 @@ public class Edificio {
      */
     public ListaEnlazada<Piso> getPisos() {
         return pisos;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ListaEnlazada<Encargado> getEncargados() {
-        return encargados;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ListaEnlazada<Arrendado> getArrendatarios() {
-        return arrendatarios;
     }
     
     public static void main(String args[]){

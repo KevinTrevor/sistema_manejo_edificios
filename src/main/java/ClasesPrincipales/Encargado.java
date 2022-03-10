@@ -55,11 +55,17 @@ public class Encargado extends Persona {
                 " " + this.getApellido();
     }
     
+    // MODIFICAR
+    
     public void modificarEncargado(String nombre, String apellido, String correo, 
             String telefono, String telefonoMovil, LocalDate fechaContrato){
-    
+        this.setNombre(nombre);
+        this.setApellido(apellido);
+        this.setCorreo(correo);
+        this.setTelefono(telefono);
+        this.setTelefonoMovil(telefonoMovil);
+        this.setFechaContrato(fechaContrato);
     }
-    
     
     // GETTER Y SETTER
     

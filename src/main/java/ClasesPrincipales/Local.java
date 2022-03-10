@@ -53,6 +53,18 @@ public class Local {
                 "\nMonto de la mensualidad: " + this.getMontoMensualidad().toString();
     }
     
+    public Float getMontoEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
+        while(nodoPago.getSiguiente() != null){
+            if (nodoPago.getInfo().getMes().equals(mes)){
+                montoRecaudado = montoRecaudado + nodoPago.getInfo().getMontoCancelado();
+            }
+            nodoPago.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
     // GETTER Y SETTER
 
     /**
