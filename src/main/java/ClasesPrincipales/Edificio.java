@@ -37,6 +37,8 @@ public class Edificio {
         this.pisos = new ListaEnlazada<>();
     }
     
+    // INSERTAR
+    
     public void agregarPisos(Piso nuevoPiso){
        Nodo<Piso> nuevo = new Nodo<>(nuevoPiso);
        ListaEnlazada<Piso> listaPisos = this.getPisos();
@@ -49,6 +51,7 @@ public class Edificio {
            if(nuevoPiso.getNumeroPiso() < auxiliar.getInfo().getNumeroPiso()){
                nuevo.setSiguiente(auxiliar);
                listaPisos.setInicio(nuevo);
+               listaPisos.setSize(listaPisos.getSize() + 1);
            }
            else{
                 while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso()){
@@ -56,10 +59,10 @@ public class Edificio {
                 }
            
                 if (auxiliar.getInfo().getNumeroPiso().equals(nuevoPiso.getNumeroPiso())){
-                    System.out.println("Ya existe unedificio con este código");
+                    System.out.println("Ya existe un piso con este número.");
                 }
                 else{
-                    if (auxiliar.getInfo().equals(listaPisos.getFin().getInfo())){
+                    if (auxiliar.getInfo().getNumeroPiso().equals(listaPisos.getFin().getInfo().getNumeroPiso())){
                         auxiliar.setSiguiente(nuevo);
                         listaPisos.setFin(nuevo);
                     }
@@ -67,6 +70,7 @@ public class Edificio {
                         nuevo.setSiguiente(auxiliar.getSiguiente());
                         auxiliar.setSiguiente(nuevo);
                     }
+                    listaPisos.setSize(listaPisos.getSize() + 1);
                 }
            }
        }
@@ -79,6 +83,20 @@ public class Edificio {
         return this.getCodigo().compareTo((String) busqueda) == 0;
     }
     
+    // MODIFICAR
+    
+    public void modificarLocal(Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
+            Float montoMensualidad){
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null) {
+            pisoBuscado.modificarLocal(codigoLocal, cedulaArrendatario, montoMensualidad);
+            this.getPisos().modificarDato(numeroPiso, pisoBuscado);
+        }
+        else{
+            System.out.println("El piso del local a modificar no se encuentra registrado.");
+        }
+    }
+    
     // MOSTRAR
     
     @Override
@@ -88,17 +106,9 @@ public class Edificio {
                 "\nEstado: " + this.getEstado() + 
                 "\nDirrecion del edificio: " + this.getDireccion() +
                 "\nEncargado del edificio: " + this.getCedulaEncargado() +
-                "\nFecha de creación: " + this.getFechaCreacion();
-    }
-    
-    public Float getMontoEnMes(String mes){
-        Float montoRecaudado = new Float(0);
-        Nodo<Piso> nodoPiso = this.getPisos().getInicio();
-        while(nodoPiso.getSiguiente() != null){
-            montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes);
-            nodoPiso.getSiguiente();
-        }
-        return montoRecaudado;
+                "\nFecha de creación: " + this.getFechaCreacion() +
+                "\nNumero de pisos: " + this.getNumeroPisos() +
+                "\nNúmero de locales: " +this.getNumeroLocales() ;
     }
     
     // GETTER Y SETTER
@@ -189,7 +199,7 @@ public class Edificio {
      * @return
      */
     public LocalDate getFechaCreacion() {
-        return fechaCreacion;
+        return this.fechaCreacion;
     }
 
     /**
@@ -205,13 +215,50 @@ public class Edificio {
      * @return
      */
     public ListaEnlazada<Piso> getPisos() {
-        return pisos;
+        return this.pisos;
     }
     
-    public static void main(String args[]){
-        Edificio nuevoEdificio = new Edificio("1", "Sunsol", "Nueva Esparta", 
-                "Porlamar, Calle Zamora", "29582382", LocalDate.now());
-        
-        System.out.println(nuevoEdificio.toString());
+    public Float getMontoEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Piso> nodoPiso = this.getPisos().getInicio();
+        while(nodoPiso != null){
+            montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes);
+            nodoPiso.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
+    public Float getRestanteEnMes(String mes){
+        Float montoRestante = new Float(0);
+        Nodo<Piso> nodoPiso = this.getPisos().getInicio();
+        while(nodoPiso != null){
+            montoRestante = montoRestante + nodoPiso.getInfo().getRestanteEnMes(mes);
+            nodoPiso.getSiguiente();
+        }
+        return montoRestante;
+    }
+    
+    public int getNumeroLocales(){
+        int totalLocales = 0;
+        Nodo<Piso> piso = this.getPisos().getInicio();
+        while(piso != null){
+            totalLocales = totalLocales + piso.getInfo().getNumeroLocales();
+            piso = piso.getSiguiente();
+        }
+        return totalLocales;
+    }
+    
+    public int getNumeroLocalesPagosEnMes(String mes){
+        int totalLocales = 0;
+        Nodo<Piso> piso = this.getPisos().getInicio();
+        while (piso != null){
+            totalLocales = totalLocales + piso.getInfo().getLocalesPagadosEnMes(mes);
+            piso = piso.getSiguiente();
+        }
+        return totalLocales;
+    }
+    
+    public int getNumeroPisos(){
+        return this.getPisos().getSize();
     }
 }

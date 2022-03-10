@@ -151,11 +151,4 @@ public class Encargado extends Persona {
     public void setTelefono(String telefono) {
         super.setTelefono(telefono);
     }
-    
-    public static void main(String args[]){
-        Encargado nuevoEncargado = new Encargado("29582382", "Kevin", "Rojas", 
-                "kevintrevor@gmail.com", "02952690018", "04127955420", LocalDate.now());
-        
-        System.out.println(nuevoEncargado.toString());
-    }
 }

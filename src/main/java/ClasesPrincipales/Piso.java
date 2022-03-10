@@ -42,22 +42,26 @@ public class Piso {
         
     }
     
-    public Float getMontoEnMes(String mes){
-        Float montoRecaudado = new Float(0);
-        Nodo<Local> nodoLocal = this.getLocales().getInicio();
-        while(nodoLocal.getSiguiente() != null){
-            montoRecaudado = montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes);
-            nodoLocal.getSiguiente();
-        }
-        return montoRecaudado;
-    }
-    
     // COMPARACIONES
     
     @Override
     public boolean equals(Object busqueda){
         Piso comparar = (Piso) busqueda;
         return this.getNumeroPiso().compareTo(comparar.getNumeroPiso()) == 0;
+    }
+    
+    // MODIFICAR
+    
+    public void modificarLocal(String codigoLocal, String cedulaArrendatario, 
+            Float montoMensualidad){
+        Local localBuscado = this.getLocales().buscarDato(codigoLocal);
+        if (localBuscado != null) {
+            localBuscado.modificarLocal(cedulaArrendatario, montoMensualidad);
+            this.getLocales().modificarDato(codigoLocal, localBuscado);
+        }
+        else{
+            System.out.println("El local a modificar no se encuentra registrado.");
+        }
     }
     
     // MOSTRAR
@@ -132,6 +136,52 @@ public class Piso {
      */
     public ListaEnlazada<Local> getLocales() {
         return locales;
+    }
+    
+    public int getNumeroLocales(){
+        return locales.getSize();
+    }
+    
+    /**
+     *
+     * @param mes
+     * @return
+     */
+    public Float getMontoEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Local> nodoLocal = this.getLocales().getInicio();
+        while(nodoLocal != null){
+            montoRecaudado = montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes);
+            nodoLocal.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
+    /**
+     *
+     * @param mes
+     * @return
+     */
+    public Float getRestanteEnMes(String mes){
+        Float montoRestante = new Float(0);
+        Nodo<Local> nodoLocal = this.getLocales().getInicio();
+        while(nodoLocal.getSiguiente() != null){
+            montoRestante = montoRestante + nodoLocal.getInfo().getRestanteEnMes(mes);
+            nodoLocal.getSiguiente();
+        }
+        return montoRestante;
+    }
+    
+    public int getLocalesPagadosEnMes(String mes){
+        int totalLocalesPagados = 0;
+        Nodo<Local> nodoLocal = this.getLocales().getInicio();
+        while(nodoLocal != null){
+            if (nodoLocal.getInfo().pagoEnMes(mes)){
+                totalLocalesPagados++;
+            }
+            nodoLocal = nodoLocal.getSiguiente();
+        }
+        return totalLocalesPagados;
     }
     
     public static void main(String args[]){

@@ -51,6 +51,25 @@ public class Arrendado extends Persona{
                 " " + this.getApellido();
     }
     
+    // MODIFICAR
+
+    /**
+     *
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param telefono
+     * @param fechaAsignacion
+     */
+    public void modificarArrendatario(String nombre, String apellido, String correo, 
+            String telefono, LocalDate fechaAsignacion){
+        this.setNombre(nombre);
+        this.setApellido(apellido);
+        this.setCorreo(correo);
+        this.setTelefono(telefono);
+        this.setFechaAsignacion(fechaAsignacion);
+    }
+    
     // GETTER Y SETER
 
     /**

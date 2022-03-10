@@ -44,6 +44,13 @@ public class Local {
         return this.getCodigoLocal().equals((String) busqueda);
     }
     
+    // MODIFICAR
+    
+    public void modificarLocal(String cedulaArrendatario, Float montoMensualidad){
+        this.setCedulaArrendatario(cedulaArrendatario);
+        this.setMontoMensualidad(montoMensualidad);
+    }
+    
     // MOSTRAR
     
     @Override
@@ -51,18 +58,6 @@ public class Local {
         return "Código Local: " + this.getCodigoLocal() + 
                 "\nCédula del Arrendatario: " + this.getCedulaArrendatario() + 
                 "\nMonto de la mensualidad: " + this.getMontoMensualidad().toString();
-    }
-    
-    public Float getMontoEnMes(String mes){
-        Float montoRecaudado = new Float(0);
-        Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
-        while(nodoPago.getSiguiente() != null){
-            if (nodoPago.getInfo().getMes().equals(mes)){
-                montoRecaudado = montoRecaudado + nodoPago.getInfo().getMontoCancelado();
-            }
-            nodoPago.getSiguiente();
-        }
-        return montoRecaudado;
     }
     
     // GETTER Y SETTER
@@ -122,5 +117,52 @@ public class Local {
      */
     public ListaEnlazada<Pago> getRegistroPagos() {
         return registroPagos;
+    }
+    
+    /**
+     *
+     * @param mes
+     * @return
+     */
+    public Float getMontoEnMes(String mes){
+        Float montoRecaudado = new Float(0);
+        Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
+        while(nodoPago != null){
+            if (nodoPago.getInfo().getMes().equals(mes)){
+                montoRecaudado = montoRecaudado + nodoPago.getInfo().getMontoCancelado();
+            }
+            nodoPago.getSiguiente();
+        }
+        return montoRecaudado;
+    }
+    
+    /**
+     *
+     * @param mes
+     * @return
+     */
+    public Float getRestanteEnMes(String mes){
+        Float montoRestante = new Float(0);
+        Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
+        while(nodoPago != null){
+            if (nodoPago.getInfo().getMes().equals(mes)){
+                montoRestante = montoRestante + nodoPago.getInfo().getMontoRestante();
+            }
+            nodoPago.getSiguiente();
+        }
+        return montoRestante;
+    }
+    
+    public boolean pagoEnMes(String mes){
+        boolean banderaPago = false;
+        Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
+        while(nodoPago != null){
+            if (nodoPago.getInfo().getMes().equals(mes)){
+                banderaPago = true;
+            }
+            nodoPago.getSiguiente();
+        }
+        return banderaPago;
+
     }
 }
