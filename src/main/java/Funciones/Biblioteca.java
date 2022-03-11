@@ -1,3 +1,8 @@
+/**
+* Hecho por: Ruben Fuentes 26.326.992 y Alexander Noriega 27.280.176
+* Carrera: Informática
+* Materia: Algoritmos y Estructuras de Datos II
+*/
 package Funciones;
 
 import java.io.BufferedReader;
@@ -5,12 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 
-import ClasesPrincipales.Arrendado;
-import ClasesPrincipales.Edificio;
-import ClasesPrincipales.Encargado;
-import ClasesPrincipales.Local;
-import ClasesPrincipales.Pago;
-import ClasesPrincipales.Piso;
+import ClasesPrincipales.*;
 
 public class Biblioteca {
 	
