@@ -179,8 +179,13 @@ public class Empresa {
         if (edificioBuscado != null){
             edificioBuscado.agregarPisos(nuevoPiso);
             this.getEdificios().modificarDato(codigo, edificioBuscado);
+            System.out.println("Test.");
         }
     }
+    
+    
+    
+    
     
     // GETTER Y SETTER
     

@@ -42,12 +42,14 @@ public class Piso {
         
     }
     
+    
+    
     // COMPARACIONES
     
     @Override
     public boolean equals(Object busqueda){
-        Piso comparar = (Piso) busqueda;
-        return this.getNumeroPiso().compareTo(comparar.getNumeroPiso()) == 0;
+        
+        return this.getNumeroPiso().compareTo((Integer) busqueda) == 0;
     }
     
     // MODIFICAR
