@@ -44,6 +44,17 @@ public class Biblioteca {
 	}
 	
 	
+	public static Integer leerDatoEntero(String mensaje) throws IOException {
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		String opcion;
+		do {
+			System.out.println("\n<---INGRESE SOLO NUMEROS--->");
+			System.out.print(mensaje); opcion = entrada.readLine();
+		}while(!Biblioteca.esNumero(opcion));
+		
+		return Integer.parseInt(opcion);
+	}
+	
 	public static Encargado obtener_datos_encargado() throws IOException {
 		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -83,8 +94,127 @@ public class Biblioteca {
 
 		
 		return  new Encargado(cedula,nombre,apellido,correo,telefono,telefonoMovil,fecha);
-
+	}
+	
+	public static Encargado modificar_encargado(Encargado encargado_actual) throws IOException {
+		Integer opcion;
+		String[] fechaAsignacion_actual = encargado_actual.getFechaContrato().toString().split("\\-");
 		
+		Integer dia_asignacion = Integer.parseInt(fechaAsignacion_actual[2]),
+		mes_asignacion = Integer.parseInt(fechaAsignacion_actual[1]),
+		anio_asignacion  = Integer.parseInt(fechaAsignacion_actual[0]);
+		
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+
+		do {
+			System.out.println("Modificar nombre del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo nombre: "); String nuevo_nombre = entrada.readLine();
+			encargado_actual.setNombre(nuevo_nombre);
+		}
+		
+		
+		do {
+			System.out.println("Modificar apellido del encargado?"); 
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo apellido: "); String nuevo_apellido = entrada.readLine();
+			encargado_actual.setApellido(nuevo_apellido);
+		}
+		
+		do {
+			System.out.println("Modificar correo del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Nuevo correo: "); String nuevo_correo = entrada.readLine();
+			encargado_actual.setCorreo(nuevo_correo);
+		}
+		
+		do {
+			System.out.println("Modificar telefono del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Nuevo telefono: "); String nuevo_telefono = entrada.readLine();
+			encargado_actual.setTelefono(nuevo_telefono);
+		}
+		
+		do {
+			System.out.println("Modificar telefono movil del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Nuevo telefono movil: "); String nuevo_telefono_movil = entrada.readLine();
+			encargado_actual.setTelefonoMovil(nuevo_telefono_movil);
+		}
+		
+		do {
+			System.out.println("Modificar dia de asignacion del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			dia_asignacion = leerDatoEntero("Ingrese nuevo dia de asignacion: ");
+			
+		}
+		
+		do {
+			System.out.println("Modificar mes de asignacion del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+			
+		}while(opcion != 1 && opcion != 2);
+		
+		if(opcion == 1) {
+			mes_asignacion = leerDatoEntero("Ingrese nuevo mes de asignacion: " );
+		}
+		
+		do {
+			System.out.println("Modificar Año de asignacion del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion !=2 );
+		
+		if(opcion == 1) {
+			anio_asignacion = leerDatoEntero("Ingrese nuevo año de asignacion: "); 
+		}
+		encargado_actual.setFechaContrato(LocalDate.of(anio_asignacion, mes_asignacion, dia_asignacion));
+		
+		
+		return encargado_actual;
 	}
 	
 	public static Edificio obtener_datos_edificio() throws IOException {
@@ -123,6 +253,106 @@ public class Biblioteca {
 		
 	}
 	
+	public static Edificio modificar_datos_edificio(Edificio edificio_actual)throws IOException {
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		String[] fechaCreacion = edificio_actual.getFechaCreacion().toString().split("\\-");
+		
+		Integer dia_creacion = Integer.parseInt(fechaCreacion[2]),
+		mes_creacion = Integer.parseInt(fechaCreacion[1]),
+		anio_creacion  = Integer.parseInt(fechaCreacion[0]);
+		Integer opcion;
+		
+		
+		do {
+			System.out.println("Modificar nombre del edificio?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo nombre del edificio: "); String nuevo_nombre = entrada.readLine();
+			edificio_actual.setIdentificacion(nuevo_nombre);
+		}
+		
+		do {
+			System.out.println("Modificar direccion del edificio?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nueva direccion del edificio: "); String nueva_direccion = entrada.readLine();
+			edificio_actual.setDireccion(nueva_direccion);
+		}
+		
+		do {
+			System.out.println("Modificar estado del edificio?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo estado del edificio: "); String nuevo_estado = entrada.readLine();
+			edificio_actual.setEstado(nuevo_estado);
+		}
+		
+		do {
+			System.out.println("Modificar la cedula del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nueva cedula del encargado del edificio: "); String nueva_cedula = entrada.readLine();
+			edificio_actual.setCedulaEncargado(nueva_cedula);
+		}
+		do {
+			System.out.println("Modificar dia de creacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			dia_creacion = leerDatoEntero("Ingrese nuevo dia de creacion: ");
+		}
+		
+		do {
+			System.out.println("Modificar mes de creacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			mes_creacion = leerDatoEntero("Ingrese nuevo mes de creacion: ");
+		}
+		
+		do {
+			System.out.println("Modificar año de creacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			anio_creacion = leerDatoEntero("Ingrese nuevo año de creacion: ");
+		}
+		
+		edificio_actual.setFechaCreacion(LocalDate.of(anio_creacion, mes_creacion, dia_creacion));
+		
+		return edificio_actual;
+	}
+	
 	public static Piso obtener_datos_piso() throws IOException{
 		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -136,6 +366,39 @@ public class Biblioteca {
 		System.out.print("Cedula del encargado: "); cedula_encargado = entrada.readLine();
 				
 		return new Piso(Integer.parseInt(numero_piso),cedula_encargado,LocalDate.now());
+	}
+	
+	public static Piso modificar_datos_piso(Piso piso_actual) throws IOException {
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		Integer opcion;
+		do {
+			System.out.println("Modificar numero de piso?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			Integer nuevo_numero_piso = leerDatoEntero("Ingrese nuevo numero de piso: ");
+			piso_actual.setNumeroPiso(nuevo_numero_piso);
+		}
+		
+		do {
+			System.out.println("Modificar cedula del encargado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo numero de cedula del encargado: "); String nueva_cedula_encargado = entrada.readLine();
+			piso_actual.setCedulaEncargado(nueva_cedula_encargado);
+		}
+		
+		
+		return piso_actual;
 	}
 	
 	public static Local obtener_datos_local() throws IOException{
@@ -153,6 +416,58 @@ public class Biblioteca {
 		
 		return new Local(codigoLocal,cedulaArrendatario,Float.parseFloat(montoMensualidad));
 	}
+	
+	public static Local modificar_datos_local(Local local_actual) throws IOException {
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		String nueva_mensualidad;
+		Integer opcion;
+		do {
+			System.out.println("Modificar codigo del local?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo codigo del local: "); String nuevo_codigo = entrada.readLine();
+			local_actual.setCodigoLocal(nuevo_codigo);
+		}
+		
+		do {
+			System.out.println("Modificar cedula del Arredentario del local?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		
+		if(opcion == 1) {
+			System.out.print("Ingrese nueva cedula: "); String nueva_cedula = entrada.readLine();
+			local_actual.setCedulaArrendatario(nueva_cedula);
+		}
+		
+		do {
+			System.out.println("Modificar monto de mensualidad del local?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			do {
+				System.out.println("\n<---INGRESE SOLO NUMEROS Y DECIMALES SEPARADOS POR PUNTO '.'--->");
+				System.out.print("Ingrese nueva mensualidad: "); nueva_mensualidad = entrada.readLine();
+			}while(!esDecimal(nueva_mensualidad));
+			local_actual.setMontoMensualidad(Float.parseFloat(nueva_mensualidad));
+		}
+		
+		
+		
+		return local_actual;
+	}
+	
 	
 	
 	public static Arrendado obtener_datos_arrendado() throws IOException {
@@ -187,10 +502,113 @@ public class Biblioteca {
 		return new Arrendado(cedula,nombre,apellido,correo,telefono,fechaAsignado);
  		
 	}
+	
+	public static Arrendado modificar_datos_arrendado(Arrendado arrendado_actual) throws IOException {
+		Integer opcion;
+		String[] fechaAsignacion_actual = arrendado_actual.getFechaAsignacion().toString().split("\\-");
+		
+		Integer dia_asignacion = Integer.parseInt(fechaAsignacion_actual[2]),
+		mes_asignacion = Integer.parseInt(fechaAsignacion_actual[1]),
+		anio_asignacion  = Integer.parseInt(fechaAsignacion_actual[0]);
+		
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		
+		do {
+			System.out.println("Modificar el nombre del arrendado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo nombre del arrendado: "); String nuevo_nombre = entrada.readLine();
+			arrendado_actual.setNombre(nuevo_nombre);
+		}
+		
+		do {
+			System.out.println("Modificar apellido del arrendado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo apellido del arrendado: "); String nuevo_apellido = entrada.readLine();
+			arrendado_actual.setApellido(nuevo_apellido);
+		}
+		
+		do {
+			System.out.println("Modificar correo del arrendado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo correo del arrendado: "); String nuevo_correo = entrada.readLine();
+			arrendado_actual.setCorreo(nuevo_correo);
+		}
+		
+		do {
+			System.out.println("Modificar telefono del arrendado?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			System.out.print("Ingrese nuevo telefono del arrendado: "); String nuevo_telefono = entrada.readLine();
+			arrendado_actual.setTelefono(nuevo_telefono);
+		}
+		
+		do {
+			System.out.println("Modificar dia de asignacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			dia_asignacion = leerDatoEntero("Ingrese nuevo dia de asignacion: ");
+		}
+		
+		do {
+			System.out.println("Modificar mes de asignacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			mes_asignacion = leerDatoEntero("Ingrese nuevo mes de asignacion: ");
+		}
+		
+		do {
+			System.out.println("Modificar año de asignacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			opcion = leerDatoEntero("Ingrese opcion: ");
+			
+		}while(opcion != 1 && opcion != 2);
+		if(opcion == 1) {
+			anio_asignacion = leerDatoEntero("Ingrese nuevo año de asignacion: ");
+		}
+		
+		arrendado_actual.setFechaAsignacion(LocalDate.of(anio_asignacion, mes_asignacion, dia_asignacion));
+	 	
+		
+		return arrendado_actual;
+	}
 
 	public static void main(String[] args) throws IOException {
-		
-		
+		Arrendado arrendado = obtener_datos_arrendado();
+		arrendado = modificar_datos_arrendado(arrendado);
+		System.out.println(arrendado.toString());
 		
 	}
 

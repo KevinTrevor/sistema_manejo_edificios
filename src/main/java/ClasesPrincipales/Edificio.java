@@ -45,6 +45,7 @@ public class Edificio {
        if (listaPisos.estaVacio()){
            listaPisos.setInicio(nuevo);
            listaPisos.setFin(nuevo);
+           listaPisos.setSize(listaPisos.getSize() + 1);
        }
        else{
            Nodo<Piso> auxiliar = this.getPisos().getInicio();
@@ -54,7 +55,7 @@ public class Edificio {
                listaPisos.setSize(listaPisos.getSize() + 1);
            }
            else{
-                while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso()){
+                while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso() && auxiliar.getSiguiente() != null){
                     auxiliar = auxiliar.getSiguiente();
                 }
            
@@ -110,6 +111,7 @@ public class Edificio {
     
     public void eliminarPiso(Integer numeroPiso){
         this.getPisos().eliminarDato(numeroPiso);
+        
     }
     
     // MOSTRAR
