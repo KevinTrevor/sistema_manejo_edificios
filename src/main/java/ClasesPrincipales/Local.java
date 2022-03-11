@@ -137,7 +137,7 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 montoRecaudado = montoRecaudado + nodoPago.getInfo().getMontoCancelado();
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return montoRecaudado;
     }
@@ -154,7 +154,7 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 montoRestante = montoRestante + nodoPago.getInfo().getMontoRestante();
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return montoRestante;
     }
@@ -166,7 +166,7 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 banderaPago = true;
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return banderaPago;
 

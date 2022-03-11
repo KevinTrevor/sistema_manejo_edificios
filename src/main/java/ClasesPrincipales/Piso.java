@@ -176,7 +176,7 @@ public class Piso {
         Nodo<Local> nodoLocal = this.getLocales().getInicio();
         while(nodoLocal != null){
             montoRecaudado = montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes);
-            nodoLocal.getSiguiente();
+            nodoLocal = nodoLocal.getSiguiente();
         }
         return montoRecaudado;
     }
@@ -191,7 +191,7 @@ public class Piso {
         Nodo<Local> nodoLocal = this.getLocales().getInicio();
         while(nodoLocal.getSiguiente() != null){
             montoRestante = montoRestante + nodoLocal.getInfo().getRestanteEnMes(mes);
-            nodoLocal.getSiguiente();
+            nodoLocal = nodoLocal.getSiguiente();
         }
         return montoRestante;
     }
@@ -208,6 +208,23 @@ public class Piso {
         return totalLocalesPagados;
     }
     
+    /**
+    *
+    * @return
+    */
+    
+    public int getLocalesMenorA(Integer monto) {
+    	Nodo<Local> local = this.getLocales().getInicio();
+    	Integer contador = 0;
+    	while(local != null) {
+    		if(local.getInfo().getMontoMensualidad() < monto) {
+    			contador++;
+    		}
+    		local = local.getSiguiente();
+    	}
+    	return contador;
+    }
+    
     public String getCedulaArrendatarioLocal(String codigoLocal){
         String cedulaEncontrada = "";
         Local localBuscado = this.getLocales().buscarDato(codigoLocal);
@@ -216,4 +233,5 @@ public class Piso {
         }
         return cedulaEncontrada;
     }
+    
 }

@@ -171,7 +171,7 @@ public class Edificio {
     public String getCodigo() {
         return codigo;
     }
-
+    
     /**
      *
      * @param codigo
@@ -273,7 +273,7 @@ public class Edificio {
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
         while(nodoPiso != null){
             montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes);
-            nodoPiso.getSiguiente();
+            nodoPiso = nodoPiso.getSiguiente();
         }
         return montoRecaudado;
     }
@@ -283,7 +283,7 @@ public class Edificio {
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
         while(nodoPiso != null){
             montoRestante = montoRestante + nodoPiso.getInfo().getRestanteEnMes(mes);
-            nodoPiso.getSiguiente();
+            nodoPiso =  nodoPiso.getSiguiente();
         }
         return montoRestante;
     }
@@ -296,6 +296,21 @@ public class Edificio {
             piso = piso.getSiguiente();
         }
         return totalLocales;
+    }
+    
+    /**
+    *
+    * @return
+    */
+    public int getLocalesMontoMenorA(Integer monto) {
+    	Nodo<Piso> piso = this.getPisos().getInicio();
+    	Integer contador = 0;
+    	while(piso != null) {
+    		contador += piso.getInfo().getLocalesMenorA(monto);
+    		piso = piso.getSiguiente();
+    	}
+    	
+    	return contador;
     }
     
     public int getNumeroLocalesPagosEnMes(String mes){
