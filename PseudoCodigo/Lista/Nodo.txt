@@ -2,13 +2,29 @@ Nodo = clase de
 
         <---Atributos--->
 
-       informacion: E <--Dato Generico de Java, la variable informacion sera del tipo que se especifique--->
-       siguiente:*Nodo
+       -info: E <--Dato Generico de Java, la variable informacion sera del tipo que se especifique--->
+       -siguiente:*Nodo
 
         <---Metodos--->
 
-       <--Constructor--->
-       Metodo Nodo(E: _informacion)
-       informacion <- _informacion
+       <---Constructor--->
+       Metodo Nodo(E: _info)
+       info <- _info
+       FinMetodo
 
+        Metodo getInfo():E <Retorna el dato especificado al instaciar el objeto>
+        getInfo <- info
+        FinMetodo
+
+        Metodo setInfo(E _info)
+        info <- _info
+        FinMetodo
+
+        Metodo getSiguiente():*Nodo
+        getSiguiente<- siguiente
+        FinMetodo
+
+        Metodo setSiguiente(Nodo _siguiente)
+        siguiente <- _siguiente
+        FinMetodo
        

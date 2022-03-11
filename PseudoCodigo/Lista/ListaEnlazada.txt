@@ -1,70 +1,178 @@
 ListaEnlazada = clase de 
                     <--Atributos--->
-                inicio: Nodo del tipo especificado
-                fin: Nodo del tipo especificado
+                -inicio: Nodo<E> del tipo especificado 
+                                                    <E viene siendo el tipo de dato que recibira inicio al momento de instaciar el objeto>
+                -fin: Nodo<E> del tipo especificado
+                -size: entero
 
                     <---Metodos--->
                 <--Constructor--->
 
                 Metodo ListaEnlazada()
                 inicio <- Nulo
-                fin <- Nulo
+                fin<-Nulo
+                size<- 0
+                FinMetodo
 
-                Metodo EsVacia():booleano
+                Metodo esVacia():booleano
+                esVacia <- size == 0
+                FinMetodo
 
-                EsVacia <- inicio = Nulo
-
-                <--El parametro recibido sera del tipo que se especifique la lista en un inicio--->
-
-
-                Metodo InsertarInicio(E: dato)
-
-                nuevo_nodo: Nodo del tipo especificado
-                nuevo_nodo <- Nuevo(Nodo(dato))
-                Si(EsVacia())Entonces
-                    inicio<- nuevo_nodo
-                    fin<- nuevo_nodo
-                Sino
-                    nuevo_nodo.siguiente <- inicio
-                    inicio<- nuevo_nodo
-                Finsi
-
-                Metodo
+                Metodo eliminarDato(Objeto dato)
+                Si(esVacia() = verdadero)Entonces
                 
-
-                Metodo InsertarFin(E:dato)
-                nuevo_nodo: Nodo del tipo especificado
-                nuevo_nodo <- Nuevo(Nodo(dato))
-
-                Si(EsVacia())Entonces
-                    inicio <- nuevo_nodo
-                    fin<- nuevo)nuevo_nodo
+                    Escribir "No hay datos que eliminar"
                 Sino
-                    fin.siguiente <- nuevo_nodo
-                    fin <- nuevo_nodo
+                    auxiliar:Nodo de tipo E
+                    previo: Nodo de tipo E
+                    auxiliar <- getInicio()
+                    previo <- Nulo
+
+                    Si(auxiliar.getInfo() == dato)Entonces <Compara si la informacion en el nodo es igual al dato 
+
+                        setInicio(auxiliar.getSiguiente())
+                        auxiliar.setSiguiente(nulo)
+                        size <- size - 1
+                    Sino
+                        Mientras(auxiliar.getInfo()<> dato y auxiliar.getSiguiente() <> nulo)Hacer
+
+                            previo <- auxiliar
+                            auxiliar <- auxiliar.getSiguiente()
+
+                        Finmientras
+                        Si(auxiliar.getInfo() == dato)Entonces
+
+                            Escribir "No se encontro el registro a eliminar."
+                        Sino
+                            Si(getFin().getInfo() == dato)Entonces
+                            
+                                previo.setSiguiente(nulo)
+                                setFin(previo)
+                            Sino
+                                previo.setSiguiente(auxiliar.setSiguiente())
+                                auxiliar.setSiguiente(nulo)
+                            Finsi
+                            size <- size - 1
+                        Finsi
+                    Finsi
+                Finsi
+                FinMetodo
+
+                Metodo buscarDato(Object dato):E <---Retorna el tipo de dato especificado E se especifica al momento de instaciar el objeto>
+                datoEncontrado: E
+                datoEncontrado <- nulo
+                
+                Si(esVacia() = verdadero)Entonces
+
+                Escribir "La lista esta vacia"
+
+                Sino
+                    auxiliar: Nodo de tipo E
+                    auxiliar <- getInicio()
+                    Mientras(auxiliar.getInfo() == dato y auxiliar.getSiguiente() <> nulo)Entonces
+                        auxiliar <- auxiliar.getSiguiente()
+                    Finmientras
+                    Si(auxiliar.getInfo() <> dato)Entonces
+                        Escribir "No se encontro el registro"
+                    Sino
+                        datoEncontrado <- auxiliar.getInfo()
+                    Finsi
                 Finsi
 
+                buscarDato <- datoEncontrado
+                
+                FinMetodo
+
+                Metodo modificarDato(Object dato, E nuevoRegistro)<Dato es un objeto que es declarado al momento de enviarse por parametros>
+                                                                  <Este puede ser integer,string cualquier cosa, y el registro es por el que se reemplaza>
+
+                    Si(esVacia() = verdadero)Entonces
+                        Escribir "No hay datos en lista"
+                    Sino
+                        auxiliar: Nodo de tipo E 
+                        auxiliar <- getInicio()
+                        Mientras( auxiliar.getInfo() <> dato y auxiliar.getSiguiente() <> nulo)Hacer
+                            auxiliar <- auxiliar.getSiguiente()
+
+                        Finmientras
+                        Si(auxiliar.getInfo() <> dato)Entonces
+
+                            Escribir "No se encontro el registro "
+                        Sino
+                            auxiliar.setInfo(nuevoRegistro)
+                        Finsi
+                    Finsi
+
+                FinMetodo
+
+                Metodo insertarInicio(E dato) <dato especificado al momento de instaciar la lista>
+                nuevo: Nodo de tipo E
+                Si(esVacia() = verdadero)Entonces
+                    setInicio(nuevo)
+                    setFin(nuevo)
+                    size <- size + 1
+                Sino
+                    nuevo.setSiguiente(getInicio())
+                    setInicio(nuevo)
+                    size <- size + 1
+                FinMetodo
 
                 Metodo eliminarInicio()
-                Si(EsVacia()) Entonces
-                    Escribir "La lista esta vacia"
+                Si(esVacio())Entonces
+
+                    escribir"La lista esta vacia"
                 Sino
-                    auxiliar: Nodo del tipo especificado
-                    auxiliar <- inicio.siguiente
-                    inicio.siguiente  <- Nulo
-                    inicio <- auxiliar
+                    auxiliar: Nodo de tipo E
+                    auxiliar <- getInicio().getSiguiente()
+                    getInicio().setSiguiente(null)
+                    setInicio(auxiliar)
+                    size <- size - 1
                 Finsi
+
+                FinMetodo
 
                 Metodo eliminarFin()
-                Si(EsVacia()) Entonces
+                Si(esVacia() = verdaero)Entonces\
                     Escribir "La lista esta vacia"
                 Sino
-                    auxiliar: Nodo del tipo especificado
-                    auxiliar <- inicio
+                    auxiliar: Nodo de tipo E
+                    auxiliar <- getInicio()
 
-                    Mientras(auxiliar.siguiente <> fin)Hacer
-                        auxiliar<- auxiliar.siguiente
+                    Mientras(auxiliar.getSiguiente() <> getFin())Hacer
+                    
+                        auxiliar <- auxiliar.getSiguiente()
+                    
                     Finmientras
-                    auxiliar.siguiente <- Nulo
-                    fin <- auxiliar
+                    auxiliar.setSiguiente(null)
+                    setFin(auxiliar)
+                    size <- size - 1
                 Finsi
+                FinMetodo
+
+                Metodo getInicio(): nodo de tipo E
+                
+                getInicio <- inicio
+                
+                FinMetodo
+
+                Metodo setInicio(Nodo _inicio)
+                    inicio <- _inicio
+                FinMetodo
+                
+                Metodo getFin(): nodo de tipo E
+                
+                    getFin <- fin
+                
+                FinMetodo
+
+                Metodo getSize():entero
+
+                getSize <- size
+
+                FinMetodo
+
+                Metodo setSize(int _size)
+
+                size <- _size
+
+                FinMetodo
