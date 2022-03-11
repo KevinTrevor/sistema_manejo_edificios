@@ -11,4 +11,27 @@ Arrendado = clase de
             Persona(_nombre,_apellido,_telefono,_correo)
             FechaAsignacion <- _FechaAsignacion
 
+            Metodo modificarArrendatario(cadena:_nombre,cadena:_apellido,cadena:_correo,cadena:_telefono,LocalDate:_FechaAsignacion)
+
+            setNombre(_nombre)
+            setApellido(_apellido)
+            setCorreo(_correo)
+            setTelefono(_telefono)
+            setFechaAsignacion(_FechaAsignacion)
+
+            FinMetodo
+
+
+            Metodo getFechaAsignacion():LocalDate
+            
+                getFechaAsignacion <- FechaAsignacion
+            
+            FinMetodo
+
+            Metodo setFechaAsignacion(LocalDate _FechaAsignacion)
+
+            FechaAsignacion <- _FechaAsignacion
+
+            FinMetodo
+
 

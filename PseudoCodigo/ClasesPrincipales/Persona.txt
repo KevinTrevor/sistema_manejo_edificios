@@ -5,14 +5,63 @@ Persona = clase de
           apellido: cadena
           correo: cadena
           telefono : cadena
+          cedula: cadena
           
             <--Metodos--->
           <---Constructor--->
-          Metodo Persona(cadena:_nombre,cadena:_apellido,cadena:_correo,cadena:_telefono)
+          Metodo Persona(cadena:_nombre,cadena:_apellido,cadena:_correo,cadena:_telefono,cadena: _cedula)
           nombre <- _nombre
           apellido <- _apellido
           correo <- _correo
           telefono <- _telefono
+          cedula <- _cedula
+
+          Metodo mostrar():cadena
+
+          mostrar <- "Nombre completo: "+getNombre()+" "+getApellido()
+
+          FinMetodo
+
+          Metodo getCedula():cadena
+            getCedula <- cedula
+          FinMetodo
+
+          Metodo setCedula(cadena:_cedula)
+          cedula <- _cedula
+          FinMetodo
+
+          Metodo getNombre():cadena
+
+          getNombre <- nombre
+
+          FinMetodo
+
+          Metodo setNombre(cadena:_nombre)
+
+          nombre <- _nombre
+          FinMetodo
+          
+
+          Metodo getApellido():cadena
+          getApellido <-apellido
+          FinMetodo
+
+          Metodo setApellido(cadena:_apellido)
+          apellido <- _apellido
+          FinMetodo
+
+          Metodo getCorreo():cadena
+          getCorreo <- correo
+          FinMetodo
+
+          Metodo setCorreo(cadena: _Correo)
+          correo <- _correo
+          FinMetodo
+          
+          Metodo getTelefono():cadena
+          getTelefono <- telefono
+          FinMetodo
+
 
 
 

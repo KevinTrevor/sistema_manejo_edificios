@@ -13,3 +13,30 @@ Encargado = clase de
             telefonoMovil <- _telefonoMovil
             fechaContrato <- _fechaContrato
 
+            Metodo getfechaContrato():LocalDate
+            getfechaContrato <- fechaContrato 
+            
+            FinMetodo
+
+            Metodo setfechaContrato(LocalDate _fechaContrato)
+                fechaContrato <- _fechaContrato
+            FinMetodo
+
+            Metodo getTelefonoMovil():cadena
+                getTelefonoMovil <- TelefonoMovil
+            FinMetodo
+
+            Metodo setTelefonoMovil(cadena: _TelefonoMovil)
+                TelefonoMovil <- _TelefonoMovil
+            FinMetodo
+
+            Metodo modificarEncargado(cadena:nombre,cadena:apellido,cadena:correo,cadena:telefono,cadena:telefonoMovil,LocalDate:fechaContrato)
+            
+            setNombre(nombre)
+            setApellido(apellido)
+            setTelefono(telefono)
+            setTelefonoMovil(telefonoMovil)
+            setCorreo(correo)
+            setfechaContrato(fechaContrato)
+            
+            FinMetodo
