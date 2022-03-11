@@ -1,12 +1,10 @@
-package Main;
+/**
+* Hecho por: Ruben Fuentes 26.326.992 y Alexander Noriega 27.280.176
+* Carrera: Informática
+* Materia: Algoritmos y Estructuras de Datos II
+*/
+package ClasesPrincipales;
 
-
-import ClasesPrincipales.Arrendado;
-import ClasesPrincipales.Edificio;
-import ClasesPrincipales.Empresa;
-import ClasesPrincipales.Encargado;
-import ClasesPrincipales.Piso;
-import ClasesPrincipales.Local;
 import Funciones.Biblioteca;
 
 

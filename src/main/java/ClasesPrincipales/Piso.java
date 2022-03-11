@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+* Hecho por: Ruben Fuentes 26.326.992 y Alexander Noriega 27.280.176
+* Carrera: Informática
+* Materia: Algoritmos y Estructuras de Datos II
+*/
 package ClasesPrincipales;
 
 import Lista.*;
@@ -46,11 +46,15 @@ public class Piso {
     
     @Override
     public boolean equals(Object busqueda){
-        Piso comparar = (Piso) busqueda;
-        return this.getNumeroPiso().compareTo(comparar.getNumeroPiso()) == 0;
+        return this.getNumeroPiso().compareTo((Integer) busqueda) == 0;
     }
     
     // MODIFICAR
+    
+    public void modificarPiso(String cedulaEncargado, LocalDate fechaRegistro){
+        this.setCedulaEncargado(cedulaEncargado);
+        this.setFechaRegistro(fechaRegistro);
+    }
     
     public void modificarLocal(String codigoLocal, String cedulaArrendatario, 
             Float montoMensualidad){
@@ -186,7 +190,6 @@ public class Piso {
     
     public static void main(String args[]){
         Piso nuevoPiso = new Piso(1, "29582382", LocalDate.now());
-        
         Float mensualidadLocal = new Float(250.50);
         Float mensualidadLocal2 = new Float(5000);
         Local nuevoLocal = new Local("1", "12222773", mensualidadLocal);

@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+* Hecho por: Ruben Fuentes 26.326.992 y Alexander Noriega 27.280.176
+* Carrera: Informática
+* Materia: Algoritmos y Estructuras de Datos II
+*/
 package Lista;
 import ClasesPrincipales.*;
 import java.util.LinkedList;
@@ -44,6 +44,7 @@ public class ListaEnlazada <E> {
             if(auxiliar.getInfo().equals(dato)){
                 this.setInicio(auxiliar.getSiguiente());
                 auxiliar.setSiguiente(null);
+                this.size--;
             }
             else{
                 while(!auxiliar.getInfo().equals(dato) && auxiliar.getSiguiente() != null){
