@@ -29,7 +29,6 @@ public class Empresa {
      *
      * @return
      */
-    
     public String mostrarEdificios(){
         String edificiosStr = "";
         Nodo<Edificio> edificio = this.getEdificios().getInicio();
@@ -43,6 +42,13 @@ public class Empresa {
         return edificiosStr;
     }
     
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     * @param codigoLocal
+     * @return
+     */
     public String mostrarLocalPorCodigo(String codigo, Integer numeroPiso, 
             String codigoLocal){
         String localStr = "";
@@ -60,7 +66,17 @@ public class Empresa {
     }
     
     // MODIFICAR
-    
+
+    /**
+     *
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param telefono
+     * @param telefonoMovil
+     * @param fechaContrato
+     */
     public void modificarEncargado(String cedula, String nombre, String apellido, String correo, 
             String telefono, String telefonoMovil, LocalDate fechaContrato){
         
@@ -72,6 +88,15 @@ public class Empresa {
         }
     }
     
+    /**
+     *
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param telefono
+     * @param fechaAsignacion
+     */
     public void modificarArrendatario(String cedula, String nombre, String apellido, 
             String correo, String telefono, LocalDate fechaAsignacion){
         Arrendado arrendatarioBuscado = this.getArrendatarios().buscarDato(cedula);
@@ -82,6 +107,14 @@ public class Empresa {
         }
     }
     
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     * @param codigoLocal
+     * @param cedulaArrendatario
+     * @param montoMensualidad
+     */
     public void modificarLocal(String codigo, Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
             Float montoMensualidad){
         
@@ -96,6 +129,13 @@ public class Empresa {
         }
     }
     
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     * @param cedulaEncargado
+     * @param fechaRegistro
+     */
     public void modificarPiso(String codigo, Integer numeroPiso, 
             String cedulaEncargado, LocalDate fechaRegistro){
         
@@ -330,6 +370,9 @@ public class Empresa {
          
         nuevoPiso.getLocales().insertarFin(nuevoLocal);
         nuevoPiso.getLocales().insertarFin(nuevoLocal2);
+        
+        Pago nuevoPago = new Pago("Enero", LocalDate.now(), new Float(2000), 
+                new Float(0), "12222773");
         
         nuevaEmpresa.agregarPisosEnEdificio("1", nuevoPiso);
         

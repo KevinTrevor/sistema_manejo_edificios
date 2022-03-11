@@ -8,7 +8,8 @@ package ClasesPrincipales;
 import java.time.LocalDate;
 
 /**
- *
+ * La clase Pago registra los montos cancelados, restantes, fecha de pago, 
+ * mes del pago y cédula del arrendatario actual.
  * 
  */
 public class Pago {
@@ -16,6 +17,9 @@ public class Pago {
     private Float montoCancelado, montoRestante;
     private String cedulaActualArrendatario, mes;
 
+    /**
+     * Método constructor de la clase Pago. Inicializa los atributos como nulos.
+     */
     public Pago() {
         this.mes = null;
         this.fechaPago = null;
@@ -25,14 +29,17 @@ public class Pago {
     }
 
     /**
-     *
-     * @param mes
-     * @param fechaPago
-     * @param montoCancelado
-     * @param montoRestante
-     * @param cedulaActualArrendatario
+     * Método constructor de la clase Pago. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param mes String
+     * @param fechaPago LocalDate
+     * @param montoCancelado Float
+     * @param montoRestante Float
+     * @param cedulaActualArrendatario String
      */
-    public Pago(String mes, LocalDate fechaPago, Float montoCancelado, Float montoRestante, String cedulaActualArrendatario) {
+    public Pago(String mes, LocalDate fechaPago, Float montoCancelado, 
+            Float montoRestante, String cedulaActualArrendatario) {
+        
         this.mes = mes;
         this.fechaPago = fechaPago;
         this.montoCancelado = montoCancelado;
@@ -61,80 +68,80 @@ public class Pago {
     // GETTER Y SETTER
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo mes
+     * @return String
      */
     public String getMes() {
         return mes;
     }
 
     /**
-     *
-     * @param mes
+     * Método que asigna un valor al atributo mes
+     * @param mes String
      */
     public void setMes(String mes) {
         this.mes = mes;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo fechaPago
+     * @return LocalDate
      */
     public LocalDate getFechaPago() {
         return fechaPago;
     }
 
     /**
-     *
-     * @param fechaPago
+     * Método que asigna un valor al atributo fechaPago
+     * @param fechaPago LocalDate
      */
     public void setFechaPago(LocalDate fechaPago) {
         this.fechaPago = fechaPago;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo montoCancelado
+     * @return Float
      */
     public Float getMontoCancelado() {
-        return montoCancelado;
+        return this.montoCancelado;
     }
 
     /**
-     *
-     * @param montoCancelado
+     * Método que asigna un valor al atributo montoCancelado
+     * @param montoCancelado Float
      */
     public void setMontoCancelado(Float montoCancelado) {
         this.montoCancelado = montoCancelado;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo montoRestante
+     * @return Float
      */
     public Float getMontoRestante() {
-        return montoRestante;
+        return this.montoRestante;
     }
 
     /**
-     *
-     * @param montoRestante
+     * Método que asigna un valor al atributo montoRestante
+     * @param montoRestante Float
      */
     public void setMontoRestante(Float montoRestante) {
         this.montoRestante = montoRestante;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo cedulaActualArrendatario
+     * @return String
      */
     public String getCedulaActualArrendatario() {
         return cedulaActualArrendatario;
     }
 
     /**
-     *
-     * @param cedulaActualArrendatario
+     * Método que asigna un valor al atributo cedulaActualArrendatario
+     * @param cedulaActualArrendatario String
      */
     public void setCedulaActualArrendatario(String cedulaActualArrendatario) {
         this.cedulaActualArrendatario = cedulaActualArrendatario;

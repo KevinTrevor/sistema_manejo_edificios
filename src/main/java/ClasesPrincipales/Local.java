@@ -5,9 +5,10 @@
 */
 package ClasesPrincipales;
 import Lista.*;
+
 /**
- *
- * @author Alberto Gutiérrez
+ * La clase Local registra el codigo del local, cedula del arrendatario,  
+ * monto de mensualidad y el registro de pagos.
  */
 public class Local {
     private String codigoLocal, cedulaArrendatario;
@@ -15,7 +16,7 @@ public class Local {
     private ListaEnlazada<Pago> registroPagos;
 
     /**
-     *
+     * Método constructor de la clase Local. Inicializa los atributos como nulos.
      */
     public Local() {
         this.codigoLocal = null;
@@ -25,10 +26,11 @@ public class Local {
     }
 
     /**
-     *
-     * @param codigoLocal
-     * @param cedulaArrendatario
-     * @param montoMensualidad
+     * Método constructor de la clase Local. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param codigoLocal String
+     * @param cedulaArrendatario String
+     * @param montoMensualidad Float
      */
     public Local(String codigoLocal, String cedulaArrendatario, Float montoMensualidad) {
         this.codigoLocal = codigoLocal;
@@ -69,8 +71,8 @@ public class Local {
     // GETTER Y SETTER
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo codigoLocal.
+     * @return String
      */
 
     public String getCodigoLocal() {
@@ -78,7 +80,7 @@ public class Local {
     }
 
     /**
-     *
+     * Método que asigna un valor al atributo codigoLocal.
      * @param codigoLocal
      */
     public void setCodigoLocal(String codigoLocal) {
@@ -86,49 +88,49 @@ public class Local {
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo cedulaArrendatario.
+     * @return String
      */
     public String getCedulaArrendatario() {
         return cedulaArrendatario;
     }
 
     /**
-     *
-     * @param cedulaArrendatario
+     * Método que asigna un valor al atributo cedulaArrendatario.
+     * @param cedulaArrendatario String
      */
     public void setCedulaArrendatario(String cedulaArrendatario) {
         this.cedulaArrendatario = cedulaArrendatario;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo montoMensualidad.
+     * @return Float
      */
     public Float getMontoMensualidad() {
         return montoMensualidad;
     }
 
     /**
-     *
-     * @param montoMensualidad
+     * Método que asigna un valor al atributo montoMensualidad.
+     * @param montoMensualidad Float
      */
     public void setMontoMensualidad(Float montoMensualidad) {
         this.montoMensualidad = montoMensualidad;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo registroPagos.
+     * @return ListaEnlazada
      */
     public ListaEnlazada<Pago> getRegistroPagos() {
         return registroPagos;
     }
     
     /**
-     *
-     * @param mes
-     * @return
+     * Método que retorna el valor total del monto recaudado en un mes específico.
+     * @param mes String
+     * @return Float
      */
     public Float getMontoEnMes(String mes){
         Float montoRecaudado = new Float(0);
@@ -137,13 +139,13 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 montoRecaudado = montoRecaudado + nodoPago.getInfo().getMontoCancelado();
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return montoRecaudado;
     }
     
     /**
-     *
+     * Método que retorna el valor total del monto restante en un mes específico.
      * @param mes
      * @return
      */
@@ -154,11 +156,17 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 montoRestante = montoRestante + nodoPago.getInfo().getMontoRestante();
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return montoRestante;
     }
     
+    /**
+     * Metodo que retorna un valor booleano dependiendo si el local se ha pagado
+     * en un mes específico. 
+     * @param mes String
+     * @return boolean
+     */
     public boolean pagoEnMes(String mes){
         boolean banderaPago = false;
         Nodo<Pago> nodoPago = this.getRegistroPagos().getInicio();
@@ -166,7 +174,7 @@ public class Local {
             if (nodoPago.getInfo().getMes().equals(mes)){
                 banderaPago = true;
             }
-            nodoPago.getSiguiente();
+            nodoPago = nodoPago.getSiguiente();
         }
         return banderaPago;
 

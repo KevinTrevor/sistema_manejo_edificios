@@ -273,7 +273,7 @@ public class Edificio {
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
         while(nodoPiso != null){
             montoRecaudado = montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes);
-            nodoPiso.getSiguiente();
+            nodoPiso = nodoPiso.getSiguiente();
         }
         return montoRecaudado;
     }
@@ -283,7 +283,7 @@ public class Edificio {
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
         while(nodoPiso != null){
             montoRestante = montoRestante + nodoPiso.getInfo().getRestanteEnMes(mes);
-            nodoPiso.getSiguiente();
+            nodoPiso = nodoPiso.getSiguiente();
         }
         return montoRestante;
     }

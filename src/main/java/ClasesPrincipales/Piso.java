@@ -95,6 +95,11 @@ public class Piso {
                 "\nLocales: \n" + locales;
     }
     
+    /**
+     *
+     * @param codigoLocal
+     * @return
+     */
     public String mostrarLocalPorCodigo(String codigoLocal) {
         String localStr = "";
         Local localBuscado = this.getLocales().buscarDato(codigoLocal);
@@ -109,7 +114,6 @@ public class Piso {
      *
      * @return
      */
-
     public Integer getNumeroPiso() {
         return numeroPiso;
     }
@@ -176,7 +180,7 @@ public class Piso {
         Nodo<Local> nodoLocal = this.getLocales().getInicio();
         while(nodoLocal != null){
             montoRecaudado = montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes);
-            nodoLocal.getSiguiente();
+            nodoLocal = nodoLocal.getSiguiente();
         }
         return montoRecaudado;
     }
@@ -191,7 +195,7 @@ public class Piso {
         Nodo<Local> nodoLocal = this.getLocales().getInicio();
         while(nodoLocal.getSiguiente() != null){
             montoRestante = montoRestante + nodoLocal.getInfo().getRestanteEnMes(mes);
-            nodoLocal.getSiguiente();
+            nodoLocal = nodoLocal.getSiguiente();
         }
         return montoRestante;
     }
@@ -203,7 +207,7 @@ public class Piso {
             if (nodoLocal.getInfo().pagoEnMes(mes)){
                 totalLocalesPagados++;
             }
-            nodoLocal = nodoLocal.getSiguiente();
+            nodoLocal = nodoLocal = nodoLocal.getSiguiente();
         }
         return totalLocalesPagados;
     }
