@@ -6,14 +6,14 @@
 package ClasesPrincipales;
 
 /**
- *
- * 
+ * La clase Persona registra la cédula, nombre, apellido, correo electrónico y  
+ * teléfono.
  */
 public class Persona {
     private String cedula, nombre, apellido, correo, telefono;
 
     /**
-     *
+     * Método constructor de la clase Persona. Inicializa los atributos como nulos.
      */
     public Persona() {
         this.cedula = null;
@@ -24,12 +24,13 @@ public class Persona {
     }
     
     /**
-     *
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
+     * Método constructor de la clase Persona. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
      */
     public Persona(String cedula, String nombre, String apellido, String correo, String telefono) {
         this.cedula = cedula;
@@ -48,16 +49,16 @@ public class Persona {
     // GETTER Y SETTER
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo cedula.
+     * @return String
      */
     public String getCedula() {
-        return cedula;
+        return this.cedula;
     }
 
     /**
-     *
-     * @param cedula
+     * Método que asigna un valor al atributo cedula.
+     * @param cedula String
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
@@ -66,64 +67,64 @@ public class Persona {
     
     
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo nombre.
+     * @return String
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
-     *
-     * @param nombre
+     * Método que asigna un valor al atributo nombre.
+     * @param nombre String
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo apellido.
+     * @return String
      */
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
 
     /**
-     *
-     * @param apellido
+     * Método que asigna un valor al atributo apellido.
+     * @param apellido String
      */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo correo.
+     * @return String
      */
     public String getCorreo() {
-        return correo;
+        return this.correo;
     }
 
     /**
-     *
-     * @param correo
+     * Método que asigna un valor al atributo correo.
+     * @param correo String
      */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo telefono.
+     * @return String
      */
     public String getTelefono() {
-        return telefono;
+        return this.telefono;
     }
 
     /**
-     *
-     * @param telefono
+     * Método que asigna un valor al atributo telefono.
+     * @param telefono String
      */
     public void setTelefono(String telefono) {
         this.telefono = telefono;

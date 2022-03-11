@@ -8,14 +8,14 @@ package ClasesPrincipales;
 import java.time.LocalDate;
 
 /**
- *
- * 
+ * La clase Encargado registra todos los atributos de la clase Persona y el
+ * atributo propio fecha de asignación.
  */
 public class Arrendado extends Persona{
     private LocalDate fechaAsignacion;
 
     /**
-     *
+     * Método constructor de la clase Arrendado. Inicializa los atributos como nulos.
      */
     public Arrendado() {
         super();
@@ -23,13 +23,14 @@ public class Arrendado extends Persona{
     }
 
     /**
-     *
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
-     * @param fechaAsignacion
+     * Método constructor de la clase Arrendado. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param fechaAsignacion LocalDate
      */
     public Arrendado(String cedula, String nombre, String apellido, String correo, String telefono, LocalDate fechaAsignacion) {
         super(cedula, nombre, apellido, correo, telefono);
@@ -54,12 +55,12 @@ public class Arrendado extends Persona{
     // MODIFICAR
 
     /**
-     *
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
-     * @param fechaAsignacion
+     * Método que modifica los valores de un arrendado, exceptuando la cedula.
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param fechaAsignacion LocalDate
      */
     public void modificarArrendatario(String nombre, String apellido, String correo, 
             String telefono, LocalDate fechaAsignacion){
@@ -74,16 +75,16 @@ public class Arrendado extends Persona{
     // GETTER Y SETER
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo fechaAsignacion.
+     * @return LocalDate
      */
     public LocalDate getFechaAsignacion() {
-        return fechaAsignacion;
+        return this.fechaAsignacion;
     }
 
     /**
-     *
-     * @param fechaAsignacion
+     * Método que asigna un valor al atributo fechaAsignacion.
+     * @param fechaAsignacion LocalDate
      */
     public void setFechaAsignacion(LocalDate fechaAsignacion) {
         this.fechaAsignacion = fechaAsignacion;

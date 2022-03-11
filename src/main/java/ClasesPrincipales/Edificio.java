@@ -8,14 +8,18 @@ import Lista.*;
 import java.time.LocalDate;
 
 /**
- *
- * 
+ * La clase Edificio registra el código del edificio, identificación del edificio,
+ * estado, dirección del edificio, cédula del encargado, fecha de creación del 
+ * edificio y la lista de pisos.
  */
 public class Edificio {
     private String codigo, identificacion, estado, direccion, cedulaEncargado;
     private LocalDate fechaCreacion;
     private ListaEnlazada<Piso> pisos;
 
+    /**
+     * Método constructor de la clase Edificio. Inicializa los atributos como nulos.
+     */
     public Edificio() {
         this.codigo = null;
         this.identificacion = null;
@@ -26,6 +30,16 @@ public class Edificio {
         this.pisos = null;
     }
 
+    /**
+     * Método constructor de la clase Edificio. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param codigo String
+     * @param identificacion String
+     * @param estado String
+     * @param direccion String
+     * @param cedulaEncargado String
+     * @param fechaCreacion LocalDate
+     */
     public Edificio(String codigo, String identificacion, String estado, 
             String direccion, String cedulaEncargado, LocalDate fechaCreacion) {
         this.codigo = codigo;
@@ -38,7 +52,11 @@ public class Edificio {
     }
     
     // INSERTAR
-    
+
+    /**
+     * Metodo que agrega un nuevo piso a la lista de pisos del edificio.
+     * @param nuevoPiso Piso
+     */
     public void agregarPisos(Piso nuevoPiso){
        Nodo<Piso> nuevo = new Nodo<>(nuevoPiso);
        ListaEnlazada<Piso> listaPisos = this.getPisos();
@@ -77,6 +95,12 @@ public class Edificio {
        }
     }
     
+    /**
+     * Método que agrega un nuevo local a un piso de la lista de pisos 
+     * del edificio. 
+     * @param numeroPiso Integer
+     * @param nuevoLocal Local
+     */
     public void agregarLocal(Integer numeroPiso, Local nuevoLocal){
         Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
         if (pisoBuscado != null) {
@@ -84,6 +108,13 @@ public class Edificio {
         }
     }
     
+    /**
+     * Metodo que agrega un nuevo pago a la lista de pagos de un local de un 
+     * piso de la lista de pisos del edificio.
+     * @param numeroPiso Integer
+     * @param codigoLocal String
+     * @param nuevoPago Pago
+     */
     public void agregarPagoLocalEnMes(Integer numeroPiso, String codigoLocal,
             Pago nuevoPago){
         
@@ -101,6 +132,15 @@ public class Edificio {
     }
     
     // MODIFICAR
+
+    /**
+     * Método para modificar los valores de un local específico en un piso 
+     * especifico de un edificio.
+     * @param numeroPiso Integer
+     * @param codigoLocal String
+     * @param cedulaArrendatario String
+     * @param montoMensualidad Float
+     */
     
     public void modificarLocal(Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
             Float montoMensualidad){
@@ -112,6 +152,12 @@ public class Edificio {
         }
     }
     
+    /**
+     * Método para modificar los valores de un piso específico de un edificio.
+     * @param numeroPiso Integer
+     * @param cedulaEncargado String
+     * @param fechaRegistro LocalDate
+     */
     public void modificarPiso(Integer numeroPiso, String cedulaEncargado, 
             LocalDate fechaRegistro){
         
@@ -122,8 +168,17 @@ public class Edificio {
         }
     }
     
+    /**
+     * Metodo para modificar los valores de un edificio.
+     * @param identificacion String
+     * @param estado String
+     * @param direccion String
+     * @param cedulaEncargado String
+     * @param fechaCreacion LocalDate
+     */
     public void modificarEdificio(String identificacion, String estado, 
             String direccion, String cedulaEncargado, LocalDate fechaCreacion){
+        
         this.setIdentificacion(identificacion);
         this.setEstado(estado);
         this.setDireccion(direccion);
@@ -132,10 +187,13 @@ public class Edificio {
     }
     
     // ELIMINAR
-    
+
+    /**
+     * Método para eliminar un piso específico de la lista de pisos del edificio.
+     * @param numeroPiso Integer
+     */
     public void eliminarPiso(Integer numeroPiso){
         this.getPisos().eliminarDato(numeroPiso);
-        
     }
     
     // MOSTRAR
@@ -152,6 +210,13 @@ public class Edificio {
                 "\nNúmero de locales: " +this.getNumeroLocales() ;
     }
     
+    /**
+     * Método que retorna la información de un local específico en un piso 
+     * específico de un edificio.
+     * @param numeroPiso
+     * @param codigoLocal
+     * @return
+     */
     public String mostrarLocalPorCodigo(Integer numeroPiso, String codigoLocal){
         String localStr = "";
         Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
@@ -164,110 +229,116 @@ public class Edificio {
     // GETTER Y SETTER
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo codigo.
+     * @return String
      */
     
     public String getCodigo() {
-        return codigo;
+        return this.codigo;
     }
-
+    
     /**
-     *
-     * @param codigo
+     * Método que asigna un valor al atributo codigo.
+     * @param codigo String
      */
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo identificacion.
+     * @return String
      */
     public String getIdentificacion() {
-        return identificacion;
+        return this.identificacion;
     }
 
     /**
-     *
-     * @param identificacion
+     * Método que asigna un valor al atributo identificacion.
+     * @param identificacion String
      */
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo estado.
+     * @return String
      */
     public String getEstado() {
-        return estado;
+        return this.estado;
     }
 
     /**
-     *
-     * @param estado
+     * Método que asigna un valor al atributo estado.
+     * @param estado String
      */
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo direccion.
+     * @return String
      */
     public String getDireccion() {
-        return direccion;
+        return this.direccion;
     }
 
     /**
-     *
-     * @param direccion
+     * Método que asigna un valor al atributo direccion.
+     * @param direccion String
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo cedulaEncargado.
+     * @return String
      */
     public String getCedulaEncargado() {
-        return cedulaEncargado;
+        return this.cedulaEncargado;
     }
 
     /**
-     *
-     * @param cedulaEncargado
+     * Método que asigna un valor al atributo cedulaEncargado.
+     * @param cedulaEncargado String
      */
     public void setCedulaEncargado(String cedulaEncargado) {
         this.cedulaEncargado = cedulaEncargado;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo fechaCreacion.
+     * @return LocalDate
      */
     public LocalDate getFechaCreacion() {
         return this.fechaCreacion;
     }
 
     /**
-     *
-     * @param fechaCreacion
+     * Método que asigna un valor al atributo fechaCreacion.
+     * @param fechaCreacion LocalDate
      */
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo pisos.
+     * @return ListaEnlazada
      */
     public ListaEnlazada<Piso> getPisos() {
         return this.pisos;
     }
     
+    /**
+     * Método que retorna el valor total del monto recaudado en un mes en todos 
+     * los locales de todos los pisos de un edificio.
+     * @param mes String
+     * @return Float
+     */
     public Float getMontoEnMes(String mes){
         Float montoRecaudado = new Float(0);
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
@@ -278,6 +349,12 @@ public class Edificio {
         return montoRecaudado;
     }
     
+    /**
+     * Método que retorna el valor total del monto restante en un mes en todos 
+     * los locales de todos los pisos en un edificio.
+     * @param mes String
+     * @return Float
+     */
     public Float getRestanteEnMes(String mes){
         Float montoRestante = new Float(0);
         Nodo<Piso> nodoPiso = this.getPisos().getInicio();
@@ -288,6 +365,10 @@ public class Edificio {
         return montoRestante;
     }
     
+    /**
+     * Método que retorna el valor total de locales en un edificio.
+     * @return int
+     */
     public int getNumeroLocales(){
         int totalLocales = 0;
         Nodo<Piso> piso = this.getPisos().getInicio();
@@ -298,6 +379,29 @@ public class Edificio {
         return totalLocales;
     }
     
+    /**
+     * Método que retorna la cantidad de locales que tienen una mensualidad menor
+     * al monto indicado por su parametro.
+     * @param monto 
+     * @return
+     */
+    public int getLocalesMontoMenorA(Integer monto) {
+    	Nodo<Piso> piso = this.getPisos().getInicio();
+    	Integer contador = 0;
+    	while(piso != null) {
+    		contador += piso.getInfo().getLocalesMenorA(monto);
+    		piso = piso.getSiguiente();
+    	}
+    	
+    	return contador;
+    }
+    
+    /**
+     * Método que retorna el valor total de locales que pagaron en un mes 
+     * específico en todos los pisos de un edificio.
+     * @param mes String
+     * @return int
+     */
     public int getNumeroLocalesPagosEnMes(String mes){
         int totalLocales = 0;
         Nodo<Piso> piso = this.getPisos().getInicio();
@@ -308,10 +412,20 @@ public class Edificio {
         return totalLocales;
     }
     
+    /**
+     * Método que retorna el tamaño de la lista de pisos.
+     * @return int
+     */
     public int getNumeroPisos(){
         return this.getPisos().getSize();
     }
     
+    /**
+     * Método que retorna la cedula del encargado de mantenimiento de un piso
+     * específico.
+     * @param numeroPiso Integer
+     * @return String
+     */
     public String getCedulaEncargadoPiso(Integer numeroPiso){
         String cedulaEncontrada = "";
         Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
@@ -321,6 +435,13 @@ public class Edificio {
         return cedulaEncontrada;
     }
     
+    /**
+     * Método que retorna la cedula del arrendatario de un local especifico de un 
+     * piso específico.
+     * @param numeroPiso
+     * @param codigoLocal
+     * @return
+     */
     public String getCedulaArrendatarioLocal(Integer numeroPiso, String codigoLocal){
         String cedulaEncontrada = "";
         Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);

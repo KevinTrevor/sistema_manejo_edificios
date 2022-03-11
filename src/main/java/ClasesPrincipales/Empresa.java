@@ -9,14 +9,17 @@ import Lista.*;
 import java.time.LocalDate;
 
 /**
- *
- * 
+ * La clase Empresa registra la lista de edificios, lista de encargados y lista 
+ * de arrendatarios.
  */
 public class Empresa {
     private ListaEnlazada<Edificio> edificios;
     private ListaEnlazada<Encargado> encargados;
     private ListaEnlazada<Arrendado> arrendatarios;
     
+    /**
+     * Método constructor de la clase Empresa. 
+     */
     public Empresa() {
         this.edificios = new ListaEnlazada<>();
         this.encargados = new ListaEnlazada<>();
@@ -26,8 +29,9 @@ public class Empresa {
     // MOSTRAR
 
     /**
-     *
-     * @return
+     * Metodo que retorna la informacion de todos los edificios de la lista de
+     * edificios.
+     * @return String
      */
     public String mostrarEdificios(){
         String edificiosStr = "";
@@ -35,19 +39,22 @@ public class Empresa {
         while(edificio != null){
             edificiosStr = edificiosStr + 
                     this.getEncargadoPorCedula(edificio.getInfo().getCedulaEncargado())
-                    + "\n" + edificio.getInfo().toString()
-                    + "\n=========================================\n";
+                    + "\n" + edificio.getInfo().toString() +
+                    "Número de pisos: " + edificio.getInfo().getNumeroPisos() +
+                    "Número de locales" + edificio.getInfo().getNumeroLocales() +
+                    "\n====================================================\n";
             edificio = edificio.getSiguiente();
         }
         return edificiosStr;
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
-     * @param codigoLocal
-     * @return
+     * Metodo que retorna la información de un local específico de un piso 
+     * específicio de un edificio específico de la lista de edificios.
+     * @param codigo String
+     * @param numeroPiso Integer
+     * @param codigoLocal String
+     * @return String
      */
     public String mostrarLocalPorCodigo(String codigo, Integer numeroPiso, 
             String codigoLocal){
@@ -60,6 +67,24 @@ public class Empresa {
         return localStr;
     }
     
+    /**
+     * Metodo que retorna la información de un edificio especifico de la lista de
+     * edificios.
+     * @param codigo String
+     * @return String
+     */
+    public String mostrarEdificioPorCodigo(String codigo) {
+    	String edificioStr = "";
+    	Edificio edificio = this.getEdificios().buscarDato(codigo);
+    	if(edificio != null) {
+    		edificioStr = this.getEncargadoPorCedula(edificio.getCedulaEncargado()) + 
+                        "\n" + 
+                        edificio.toString();
+    	}
+    	
+    	return edificioStr;
+    }
+    
     @Override
     public String toString(){
         return this.mostrarEdificios();
@@ -68,14 +93,15 @@ public class Empresa {
     // MODIFICAR
 
     /**
-     *
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
-     * @param telefonoMovil
-     * @param fechaContrato
+     * Método para modificar los valores de un encargado específico, exceptuando
+     * la cedula.
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param telefonoMovil String
+     * @param fechaContrato LocalDate
      */
     public void modificarEncargado(String cedula, String nombre, String apellido, String correo, 
             String telefono, String telefonoMovil, LocalDate fechaContrato){
@@ -89,13 +115,14 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
-     * @param fechaAsignacion
+     * Método para modificar los valores de un arrendatario específico, 
+     * exceptuando la cedula.
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param fechaAsignacion String
      */
     public void modificarArrendatario(String cedula, String nombre, String apellido, 
             String correo, String telefono, LocalDate fechaAsignacion){
@@ -108,12 +135,14 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
-     * @param codigoLocal
-     * @param cedulaArrendatario
-     * @param montoMensualidad
+     * Método para modificar los valores de un local específico en un piso 
+     * específico de un edificio específico de la lista de edificios, exceptuando 
+     * el codigo del local.
+     * @param codigo String
+     * @param numeroPiso Integer
+     * @param codigoLocal String
+     * @param cedulaArrendatario String
+     * @param montoMensualidad Float
      */
     public void modificarLocal(String codigo, Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
             Float montoMensualidad){
@@ -124,17 +153,15 @@ public class Empresa {
                     montoMensualidad);
             this.getEdificios().modificarDato(codigo, edificioBuscado);
         }
-        else{
-            System.out.println("El edificio del local a modificar no se encuentra registrado.");
-        }
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
-     * @param cedulaEncargado
-     * @param fechaRegistro
+     * Método para modificar los valores de un piso específico de un edificio 
+     * específico de la lista de edificios, exceptuando el numero de piso.
+     * @param codigo String
+     * @param numeroPiso Integer
+     * @param cedulaEncargado String
+     * @param fechaRegistro LocalDate
      */
     public void modificarPiso(String codigo, Integer numeroPiso, 
             String cedulaEncargado, LocalDate fechaRegistro){
@@ -147,6 +174,16 @@ public class Empresa {
         }
     }
     
+    /**
+     * Método para modificar los valores de un edificio específico de la lista 
+     * de edificios, exceptuando el codigo del edificio.
+     * @param codigo String
+     * @param identificacion String
+     * @param estado String
+     * @param direccion String
+     * @param cedulaEncargado String
+     * @param fechaCreacion LocalDate
+     */
     public void modificarEdificio(String codigo, String identificacion, String estado, 
             String direccion, String cedulaEncargado, LocalDate fechaCreacion){
         
@@ -161,8 +198,8 @@ public class Empresa {
     // ELIMINAR
 
     /**
-     *
-     * @param codigo
+     * Método que elimina un edificio especifico de la lista de edificios.
+     * @param codigo String
      */
     
     public void eliminarEdificio(String codigo){
@@ -170,9 +207,10 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
+     * Método que elimina un piso específico de unedificio especifico de la 
+     * lista de edificios.
+     * @param codigo String
+     * @param numeroPiso Integer
      */
     public void eliminarPiso(String codigo, Integer numeroPiso){
         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
@@ -185,8 +223,8 @@ public class Empresa {
     // INSERTAR 
 
     /**
-     *
-     * @param nuevoEdificio
+     * Método que agrega un nuevo edificio a la lista de edificios.
+     * @param nuevoEdificio Edificio
      */
     public void agregarEdificios(Edificio nuevoEdificio){
        Nodo<Edificio> nuevo = new Nodo<>(nuevoEdificio);
@@ -229,25 +267,26 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param nuevoEncargado
+     * Metodo que agrega un nuevo encargado a la lista de encargados.
+     * @param nuevoEncargado Encargado
      */
     public void agregarEncargado(Encargado nuevoEncargado){
         this.getEncargados().insertarFin(nuevoEncargado);
     }
     
     /**
-     *
-     * @param nuevoArrendado
+     * Metodo que agrega un nuevo arrendatario a la lista de arrendatarios.
+     * @param nuevoArrendado Arrendado
      */
     public void agregarArrendatario(Arrendado nuevoArrendado){
         this.getArrendatarios().insertarFin(nuevoArrendado);
     }
     
     /**
-     *
-     * @param codigo
-     * @param nuevoPiso
+     * Método que agrega un nuevo piso a un edificio específico de la lista de
+     * edificios.
+     * @param codigo String
+     * @param nuevoPiso Piso
      */
     public void agregarPisosEnEdificio(String codigo, Piso nuevoPiso){
         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
@@ -258,10 +297,11 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
-     * @param nuevoLocal
+     * Método que agrega un nuevo local a un piso específico de un edificio 
+     * específico de la lista de edificios.
+     * @param codigo String
+     * @param numeroPiso Integer
+     * @param nuevoLocal Local
      */
     public void agregarLocal(String codigo, Integer numeroPiso, Local nuevoLocal){
         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
@@ -271,11 +311,12 @@ public class Empresa {
     }
     
     /**
-     *
-     * @param codigo
-     * @param numeroPiso
-     * @param codigoLocal
-     * @param nuevoPago
+     * Método que agrega un nuevo pago a un local especifico de un piso específico 
+     * de un edificio específico de la lista de edificios.
+     * @param codigo String
+     * @param numeroPiso Integer
+     * @param codigoLocal String
+     * @param nuevoPago Pago
      */
     public void agregarPagoLocalEnMes(String codigo,Integer numeroPiso, 
             String codigoLocal, Pago nuevoPago){
@@ -289,25 +330,34 @@ public class Empresa {
     // GETTER Y SETTER
     
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo edificios. 
+     * @return ListaEnlazada
      */
-
     public ListaEnlazada<Edificio> getEdificios() {
-        return edificios;
+        return this.edificios;
     }
 
+    /**
+     * Método que retorna el valor del atributo encargados. 
+     * @return ListaEnlazada
+     */
     public ListaEnlazada<Encargado> getEncargados() {
-        return encargados;
+        return this.encargados;
     }
 
+    /**
+     * Método que retorna el valor del atributo arrendatarios. 
+     * @return ListaEnlazada
+     */
     public ListaEnlazada<Arrendado> getArrendatarios() {
-        return arrendatarios;
+        return this.arrendatarios;
     }
     
     /**
-     *
-     * @param mes
+     * Método que retorna el valor total del monto recaudado en un mes en todos 
+     * los locales de todos los pisos de todos los edificios de la lista de 
+     * edificios.
+     * @param mes String
      * @return
      */
     public Float getMontoEnMes(String mes){
@@ -315,69 +365,43 @@ public class Empresa {
         Nodo<Edificio> nodoEdificio = this.getEdificios().getInicio();
         while(nodoEdificio != null){
             montoRecaudado = montoRecaudado + nodoEdificio.getInfo().getMontoEnMes(mes);
-            nodoEdificio.getSiguiente();
+            nodoEdificio = nodoEdificio.getSiguiente();
         }
         return montoRecaudado;
     }
     
+    /**
+     * Método que retorna el valor total del monto restante en un mes en todos 
+     * los locales de todos los pisos de todos los edificios de la lista de 
+     * edificios.
+     * @param mes String
+     * @return Float
+     */
     public Float getRestanteEnMes(String mes){
         Float montoRestante = new Float(0);
         Nodo<Edificio> nodoEdificio = this.getEdificios().getInicio();
         while(nodoEdificio != null){
             montoRestante = montoRestante + nodoEdificio.getInfo().getRestanteEnMes(mes);
-            nodoEdificio.getSiguiente();
+            nodoEdificio = nodoEdificio.getSiguiente();
         }
         return montoRestante;
     }
     
+    /**
+     * Método que retorna un encargado buscado por su cédula.
+     * @param cedula String
+     * @return Encargado
+     */
     public Encargado getEncargadoPorCedula(String cedula){
         return this.getEncargados().buscarDato(cedula);
     }
     
+    /**
+     * Método que retorna un arrendatario buscado por su cédula.
+     * @param cedula String
+     * @return Arrendado
+     */
     public Arrendado getArrendadoPorCedula(String cedula){
         return this.getArrendatarios().buscarDato(cedula);
-    }
-    
-    public static void main(String args[]){
-        Edificio nuevoEdificio = new Edificio("1", "Sunsol", "Nueva Esparta", 
-                "Porlamar, Calle Zamora", "29582382", LocalDate.now());
-        Edificio nuevoEdificio2 = new Edificio("2", "Las Putas", "Nueva Esparta", 
-                "Porlamar, Calle Zamora", "3889777", LocalDate.now());
-        Empresa nuevaEmpresa = new Empresa();
-        
-        Encargado nuevoEncargado = new Encargado("29582382", "Kevin", "Rojas", 
-                "kevintrevor@gmail.com", "02952690018", "04127955420", LocalDate.now());
-        Encargado nuevoEncargado2 = new Encargado("3889777", "Yaritza", "Rodriguez", 
-                "viejitayara@gmail.com", "02952692313", "04123526289", LocalDate.now());
-        Arrendado nuevoArrendado = new Arrendado("12222773", "Luis", "Rojas", 
-                "luisgeronimo@gmail.com", "04120960038", LocalDate.now());
-        
-        nuevaEmpresa.agregarEncargado(nuevoEncargado);
-        nuevaEmpresa.agregarEncargado(nuevoEncargado2);
-        nuevaEmpresa.agregarArrendatario(nuevoArrendado);
-        
-        nuevaEmpresa.agregarEdificios(nuevoEdificio);
-        nuevaEmpresa.agregarEdificios(nuevoEdificio2);
-        
-        Piso nuevoPiso = new Piso(1, "14221391", LocalDate.now());
-        Piso nuevoPiso2 = new Piso(2, "15895465", LocalDate.now());
-        
-        Float mensualidadLocal = new Float(2500.50);
-        Float mensualidadLocal2 = new Float(4000);
-        
-        Local nuevoLocal = new Local("1", "12222773", mensualidadLocal);
-        Local nuevoLocal2 = new Local("2", "29668074", mensualidadLocal2);
-         
-        nuevoPiso.getLocales().insertarFin(nuevoLocal);
-        nuevoPiso.getLocales().insertarFin(nuevoLocal2);
-        
-        Pago nuevoPago = new Pago("Enero", LocalDate.now(), new Float(2000), 
-                new Float(0), "12222773");
-        
-        nuevaEmpresa.agregarPisosEnEdificio("1", nuevoPiso);
-        
-        System.out.println(nuevaEmpresa.mostrarLocalPorCodigo("1", 1, "1"));
-        
-        
     }
 }

@@ -22,18 +22,7 @@ public class Aplicacion {
 	}
 	
 	
-	public void RegistrarUsuario() throws IOException {
-		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("\n<---REGISTRAR USUARIO--->\n");
-		System.out.print("Nombre de usuario: "); entrada.readLine();
-		System.out.print("Clave del usuario: "); entrada.readLine();
-		
-		System.out.println("\n<---REGISTRADO EXITOSAMENTE!!!--->\n");
-		this.IngresarAlSistema();
-		
-		
-		
-	}
+	
 	
 	public  void IngresarAlSistema() throws IOException {
     	BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
@@ -44,7 +33,6 @@ public class Aplicacion {
 		do {
 			System.out.println("\n<----- GESTION DE EDIFICIOS ----->\n");
 			System.out.println("1. Ingresar al sistema");
-			System.out.println("2. Registrar un usuario");
 			System.out.println("0. Salir del programa.\n");
 			
 			System.out.print("Ingrese opcion: "); opcion = entrada.readLine();
@@ -59,9 +47,6 @@ public class Aplicacion {
 			switch(Integer.parseInt(opcion)) {
 			case 1:
 				this.menuEmpresa();
-			break;
-			case 2:
-				this.RegistrarUsuario();
 			break;
 			case 0:
 				System.out.println("\n<---FIN DEL PROGRAMA--->\n");
@@ -129,14 +114,25 @@ public class Aplicacion {
 			System.out.println("3. Eliminar Edificio");
 			System.out.println("4. Mostrar Edificio");
 			System.out.println("5. Monto recaudado en todos los edificios en un mes");
+			System.out.println("6. Obtener locales con un monto menor al especificado");
 			System.out.println("0. Menu anterior\n");
 			
 			
 			opcion = Biblioteca.leerDatoEntero("Ingrese opcion: ");
 			switch(opcion) {
 			case 1:
-				Edificio nuevo_edificio = Biblioteca.obtener_datos_edificio();
-				this.empresa.agregarEdificios(nuevo_edificio);
+				
+				System.out.print("Ingrese cedula del Encargado: "); String cedula_encargado = entrada.readLine();
+				
+				if(this.empresa.getEncargadoPorCedula(cedula_encargado) != null) {
+					Edificio nuevo_edificio = Biblioteca.obtener_datos_edificio();
+					this.empresa.agregarEdificios(nuevo_edificio);
+				}
+				else {
+					System.out.println("\n<---DEBE REGISTRAR EL ENCARGADO--->");
+				}
+				
+				
 				
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
@@ -168,16 +164,28 @@ public class Aplicacion {
 				System.out.print("Ingrese el codigo del edificio: "); codigo_edificio = entrada.readLine();
 				Edificio edificio = this.empresa.getEdificios().buscarDato(codigo_edificio);
 				if(edificio != null) {
-					System.out.println(edificio.toString());
+					System.out.println(this.empresa.mostrarEdificioPorCodigo(codigo_edificio));
 				}
 				
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
 			case 5:
 				String mes;
-				System.out.println("Ingrese un mes: "); mes = entrada.readLine();
-				this.empresa.getMontoEnMes(mes);
+				System.out.print("Ingrese un mes: "); mes = entrada.readLine();
 				
+				System.out.println("\n<---MONTO RECAUDADO EN EL MES DE: "+mes+"--->\n");
+				System.out.println(this.empresa.getMontoEnMes(mes));
+				
+				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
+			break;
+			case 6:
+				System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
+				edificio = this.empresa.getEdificios().buscarDato(codigo_edificio);
+				if(edificio != null) {
+					Integer monto = Biblioteca.leerDatoEntero("Ingrese monto de busqueda: ");
+					
+					System.out.print("Numero de locales con un montor menor a "+monto+":"+edificio.getLocalesMontoMenorA(monto));
+				}
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
 			}
@@ -187,8 +195,8 @@ public class Aplicacion {
 	
 	public void menuPiso() throws IOException {
     	BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-		String opcion,codigo_edificio;
-		Integer numero_piso;
+		String codigo_edificio;
+		Integer numero_piso,opcion;
 		do {
 			System.out.println("\n<----- GESTION DE PISOS ----->\n");
 			System.out.println("1. Registrar Piso");
@@ -198,19 +206,28 @@ public class Aplicacion {
 			System.out.println("0. Menu anterior\n");
 			
 			
-			System.out.print("Ingrese opcion: ");opcion = entrada.readLine();
-			while(!Biblioteca.esNumero(opcion)) {
-				System.out.println("\n<---Ingrese un numero!--->");
-				System.out.print("Ingrese opcion: "); opcion = entrada.readLine();
-				
-			}
-			switch(Integer.parseInt(opcion)) {
+			opcion =  Biblioteca.leerDatoEntero("Ingrese opcion: ");
+			
+			
+			switch(opcion) {
 			case 1:
 				
-				System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
-				Piso nuevo_piso = Biblioteca.obtener_datos_piso();
+				System.out.print("Ingrese cedula del encargado: "); String cedula_encargado = entrada.readLine();
+				if(this.empresa.getEncargadoPorCedula(cedula_encargado) != null) {
+					System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
+					if(this.empresa.getEdificios().buscarDato(codigo_edificio) != null) {
+						Piso nuevo_piso = Biblioteca.obtener_datos_piso();
+						this.empresa.agregarPisosEnEdificio(codigo_edificio, nuevo_piso);
+					}
+					else {
+						System.out.println("\n<---Debe registrar el edificio--->");
+					}
+
+				}
+				else {
+					System.out.println("\n<---Debe registrar el encargado--->");
+				}
 				
-				this.empresa.agregarPisosEnEdificio(codigo_edificio, nuevo_piso);
 				
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
@@ -218,6 +235,20 @@ public class Aplicacion {
 				System.out.print("Ingrese el codigo del edificio: "); codigo_edificio = entrada.readLine();
 				
 				numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
+				
+				Edificio edificio_actual = this.empresa.getEdificios().buscarDato(codigo_edificio);
+				if(edificio_actual != null) {
+					Piso piso_actual = edificio_actual.getPisos().buscarDato(numero_piso);
+					if(piso_actual != null) {
+						piso_actual = Biblioteca.modificar_datos_piso(piso_actual);
+						this.empresa.modificarPiso(codigo_edificio, 
+								numero_piso, 
+								piso_actual.getCedulaEncargado(),
+								piso_actual.getFechaRegistro());
+					}
+				}
+				
+				
 				
 				
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
@@ -236,8 +267,11 @@ public class Aplicacion {
 				Edificio edificio = this.empresa.getEdificios().buscarDato(codigo_edificio);
 				if(edificio != null) {
 					numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
-					Piso piso = this.empresa.getEdificios().buscarDato(codigo_edificio).getPisos().buscarDato(numero_piso);
-					System.out.println(piso.toString());
+					Piso piso = edificio.getPisos().buscarDato(numero_piso);
+					if(piso != null) {
+						System.out.println(piso.toString());
+					}
+					
 					
 				}
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
@@ -245,37 +279,122 @@ public class Aplicacion {
 				
 			break;
 			}
-		}while(Integer.parseInt(opcion) != 0);
+		}while(opcion != 0);
     	
     }
 	
 	public  void menuLocal() throws IOException {
     	BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-		String codigo_edificio,numero_piso,codigo_local;
-		Integer opcion;
+		String codigo_edificio,codigo_local;
+		Integer opcion,numero_piso;
+		Edificio edificio;
+		Piso piso;
+		Local local;
 		do {
 			System.out.println("\n<----- GESTION DE LOCAL ----->\n");
 			System.out.println("1. Registrar Local");
 			System.out.println("2. Modificar Local");
+			System.out.println("3. Buscar Local");
+			System.out.println("4. Registrar pago de local");
 			System.out.println("0. Menu anterior\n");
 			
 			
 			opcion = Biblioteca.leerDatoEntero("Ingrese opcion: ");
 			switch(opcion) {
 			case 1:
-				Local nuevo_local = Biblioteca.obtener_datos_local();
+				
+				
+				System.out.print("Ingrese cedula del arrendatario: "); String cedula_arrendatario = entrada.readLine();
+				if(this.empresa.getArrendadoPorCedula(cedula_arrendatario) != null) {
+					System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
+					edificio = this.empresa.getEdificios().buscarDato(codigo_edificio);
+					if(edificio !=  null) {
+						numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
+						if(edificio.getPisos().buscarDato(numero_piso) != null) {
+							Local nuevo_local = Biblioteca.obtener_datos_local();
+							this.empresa.agregarLocal(codigo_edificio,numero_piso, nuevo_local);
+						}
+						else {
+							System.out.println("\n<---DEBE REGISTRAR EL PISO--->");
+						}
+					}
+					else {
+						System.out.println("\n<---DEBE REGISTRAR EL EDIFICIO--->");
+					}
+
+				}
+				else {
+					System.out.println("\n<---DEBE REGISTRAR EL ARREDENTARIO--->");
+				}
+				
 
 				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
 			
 			case 2:
 				System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
-				do {
-					System.out.print("Ingrese numero del piso: "); numero_piso = entrada.readLine();
-				}while(!Biblioteca.esNumero(numero_piso));
+				numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
 				System.out.print("Ingrese codigo del local: "); codigo_local = entrada.readLine();
 				
-				System.out.println("\n<---Modificado exitosamente--->\n");
+				edificio = this.empresa.getEdificios().buscarDato(codigo_edificio);
+				if(edificio != null) {
+					piso = edificio.getPisos().buscarDato(numero_piso);
+					if(piso != null) {
+						local = piso.getLocales().buscarDato(codigo_local);
+						if(local != null) {
+							local = Biblioteca.modificar_datos_local(local);
+							this.empresa.modificarLocal(codigo_edificio, 
+									numero_piso, 
+									local.getCodigoLocal(), 
+									local.getCedulaArrendatario(), 
+									local.getMontoMensualidad());
+						}
+					}
+				}
+				
+				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
+				
+				
+			break;
+			case 3:
+				System.out.print("Ingresa el codigo del edificio: "); codigo_edificio = entrada.readLine();
+				Edificio edificio_actual = this.empresa.getEdificios().buscarDato(codigo_edificio);
+				if(edificio_actual != null) {
+					numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
+					Piso piso_actual = edificio_actual.getPisos().buscarDato(numero_piso);
+					if(piso_actual != null) {
+						System.out.print("Ingrese codigo del local: "); codigo_local = entrada.readLine();
+						Local local_actual = piso_actual.getLocales().buscarDato(codigo_local);
+						if(local_actual != null) {
+							System.out.println(this.empresa.mostrarLocalPorCodigo(codigo_edificio, numero_piso, codigo_local));
+						}
+					}
+					
+				}
+				
+				
+				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
+				
+			break;
+			case 4:
+				System.out.print("Ingrese codigo del edificio: "); codigo_edificio = entrada.readLine();
+				edificio =  this.empresa.getEdificios().buscarDato(codigo_edificio);
+				if(edificio != null) {
+					numero_piso = Biblioteca.leerDatoEntero("Ingrese numero de piso: ");
+					piso = edificio.getPisos().buscarDato(numero_piso);
+					if(piso != null) {
+						System.out.print("Ingrese codigo del local: "); codigo_local = entrada.readLine();
+						local = piso.getLocales().buscarDato(codigo_local);
+						if(local != null) {
+							Pago pago = Biblioteca.obtener_datos_pago(local.getMontoMensualidad());
+							this.empresa.agregarPagoLocalEnMes(codigo_edificio,
+									numero_piso, 
+									codigo_local, 
+									pago);
+						}
+					}
+				}
+				System.out.println("\nPresiona enter para continuar\n"); entrada.readLine();
 			break;
 			}
 		}while(opcion != 0);

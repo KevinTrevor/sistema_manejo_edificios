@@ -7,15 +7,15 @@ package ClasesPrincipales;
 import java.time.LocalDate;
 
 /**
- *
- * 
+ * La clase Encargado registra todos los atributos de la clase Persona y 
+ * atributos propios como teléfono movil y fecha del contrato.
  */
 public class Encargado extends Persona {
     private String telefonoMovil;
     private LocalDate fechaContrato;
     
     /**
-     *
+     * Método constructor de la clase Encargado. Inicializa los atributos como nulos.
      */
     public Encargado() {
         super();
@@ -24,14 +24,15 @@ public class Encargado extends Persona {
     }
 
     /**
-     *
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param telefono
-     * @param telefonoMovil
-     * @param fechaContrato
+     * Método constructor de la clase Encargado. Inicializa los atributos con los 
+     * valores pasados como parametros.
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param telefonoMovil String
+     * @param fechaContrato LocalDate
      */
     public Encargado(String cedula, String nombre, String apellido, String correo, 
             String telefono, String telefonoMovil, LocalDate fechaContrato) {
@@ -56,7 +57,16 @@ public class Encargado extends Persona {
     }
     
     // MODIFICAR
-    
+
+    /**
+     * Método que modifica los valores de un encargado, exceptuando la cedula.
+     * @param nombre String
+     * @param apellido String
+     * @param correo String
+     * @param telefono String
+     * @param telefonoMovil String
+     * @param fechaContrato LocalDate
+     */
     public void modificarEncargado(String nombre, String apellido, String correo, 
             String telefono, String telefonoMovil, LocalDate fechaContrato){
         this.setNombre(nombre);
@@ -71,32 +81,32 @@ public class Encargado extends Persona {
     
     
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo telefonoMovil.
+     * @return String
      */
     public String getTelefonoMovil() {
-        return telefonoMovil;
+        return this.telefonoMovil;
     }
 
     /**
-     *
-     * @param telefonoMovil
+     * Método que asigna un valor al atributo telefonoMovil.
+     * @param telefonoMovil String
      */
     public void setTelefonoMovil(String telefonoMovil) {
         this.telefonoMovil = telefonoMovil;
     }
 
     /**
-     *
-     * @return
+     * Método que retorna el valor del atributo fechaContrato.
+     * @return LocalDate
      */
     public LocalDate getFechaContrato() {
-        return fechaContrato;
+        return this.fechaContrato;
     }
 
     /**
-     *
-     * @param fechaContrato
+     * Método que asigna un valor al atributo fechaContrato.
+     * @param fechaContrato LocalDate
      */
     public void setFechaContrato(LocalDate fechaContrato) {
         this.fechaContrato = fechaContrato;
