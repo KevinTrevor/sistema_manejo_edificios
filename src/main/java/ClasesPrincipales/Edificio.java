@@ -77,6 +77,22 @@ public class Edificio {
        }
     }
     
+    public void agregarLocal(Integer numeroPiso, Local nuevoLocal){
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null) {
+            pisoBuscado.agregarLocal(nuevoLocal);
+        }
+    }
+    
+    public void agregarPagoLocalEnMes(Integer numeroPiso, String codigoLocal,
+            Pago nuevoPago){
+        
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null) {
+            pisoBuscado.agregarPagoLocalEnMes(codigoLocal, nuevoPago);
+        }
+    }
+    
     // COMPARACIONES
     
     @Override
@@ -88,13 +104,21 @@ public class Edificio {
     
     public void modificarLocal(Integer numeroPiso, String codigoLocal, String cedulaArrendatario, 
             Float montoMensualidad){
+        
         Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
         if (pisoBuscado != null) {
             pisoBuscado.modificarLocal(codigoLocal, cedulaArrendatario, montoMensualidad);
             this.getPisos().modificarDato(numeroPiso, pisoBuscado);
         }
-        else{
-            System.out.println("El piso del local a modificar no se encuentra registrado.");
+    }
+    
+    public void modificarPiso(Integer numeroPiso, String cedulaEncargado, 
+            LocalDate fechaRegistro){
+        
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null) {
+            pisoBuscado.modificarPiso(cedulaEncargado, fechaRegistro);
+            this.getPisos().modificarDato(numeroPiso, pisoBuscado);
         }
     }
     
@@ -126,6 +150,15 @@ public class Edificio {
                 "\nFecha de creación: " + this.getFechaCreacion() +
                 "\nNumero de pisos: " + this.getNumeroPisos() +
                 "\nNúmero de locales: " +this.getNumeroLocales() ;
+    }
+    
+    public String mostrarLocalPorCodigo(Integer numeroPiso, String codigoLocal){
+        String localStr = "";
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null) {
+            localStr = pisoBuscado.mostrarLocalPorCodigo(codigoLocal);
+        }
+        return localStr;
     }
     
     // GETTER Y SETTER

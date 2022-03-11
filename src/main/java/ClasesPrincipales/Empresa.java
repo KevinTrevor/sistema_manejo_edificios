@@ -43,6 +43,17 @@ public class Empresa {
         return edificiosStr;
     }
     
+    public String mostrarLocalPorCodigo(String codigo, Integer numeroPiso, 
+            String codigoLocal){
+        
+        String localStr = "";
+        Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            localStr = edificioBuscado.mostrarLocalPorCodigo(numeroPiso, codigoLocal);
+        }
+        return localStr;
+    }
+    
     @Override
     public String toString(){
         return this.mostrarEdificios();
@@ -82,6 +93,17 @@ public class Empresa {
         }
         else{
             System.out.println("El edificio del local a modificar no se encuentra registrado.");
+        }
+    }
+    
+    public void modificarPiso(String codigo, Integer numeroPiso, 
+            String cedulaEncargado, LocalDate fechaRegistro){
+        
+         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            edificioBuscado.modificarPiso(numeroPiso, cedulaEncargado,
+                    fechaRegistro);
+            this.getEdificios().modificarDato(codigo, edificioBuscado);
         }
     }
     
@@ -166,14 +188,27 @@ public class Empresa {
        }
     }
     
+    /**
+     *
+     * @param nuevoEncargado
+     */
     public void agregarEncargado(Encargado nuevoEncargado){
         this.getEncargados().insertarFin(nuevoEncargado);
     }
     
+    /**
+     *
+     * @param nuevoArrendado
+     */
     public void agregarArrendatario(Arrendado nuevoArrendado){
         this.getArrendatarios().insertarFin(nuevoArrendado);
     }
     
+    /**
+     *
+     * @param codigo
+     * @param nuevoPiso
+     */
     public void agregarPisosEnEdificio(String codigo, Piso nuevoPiso){
         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
         if (edificioBuscado != null){
@@ -183,9 +218,34 @@ public class Empresa {
         }
     }
     
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     * @param nuevoLocal
+     */
+    public void agregarLocal(String codigo, Integer numeroPiso, Local nuevoLocal){
+        Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            edificioBuscado.agregarLocal(numeroPiso, nuevoLocal);
+        }
+    }
     
-    
-    
+    /**
+     *
+     * @param codigo
+     * @param numeroPiso
+     * @param codigoLocal
+     * @param nuevoPago
+     */
+    public void agregarPagoLocalEnMes(String codigo,Integer numeroPiso, 
+            String codigoLocal, Pago nuevoPago){
+        
+        Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
+        if (edificioBuscado != null) {
+            edificioBuscado.agregarPagoLocalEnMes(numeroPiso, codigoLocal, nuevoPago);
+        }
+    }
     
     // GETTER Y SETTER
     

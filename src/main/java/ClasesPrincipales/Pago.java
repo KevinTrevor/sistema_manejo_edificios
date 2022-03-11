@@ -139,12 +139,4 @@ public class Pago {
     public void setCedulaActualArrendatario(String cedulaActualArrendatario) {
         this.cedulaActualArrendatario = cedulaActualArrendatario;
     } 
-    
-    public static void main(String args[]){
-        Float nuevoMontoCancelado = new Float(2506.50);
-        Float nuevoMontoRestante = new Float(5000 - 2506.50);
-        Pago nuevoPago = new Pago("Enero",LocalDate.now(), nuevoMontoCancelado, nuevoMontoRestante, "12222773");
-        
-        System.out.println(nuevoPago.toString());
-    }
 }

@@ -42,8 +42,6 @@ public class Piso {
         
     }
     
-    
-    
     // COMPARACIONES
     
     @Override
@@ -65,8 +63,19 @@ public class Piso {
             localBuscado.modificarLocal(cedulaArrendatario, montoMensualidad);
             this.getLocales().modificarDato(codigoLocal, localBuscado);
         }
-        else{
-            System.out.println("El local a modificar no se encuentra registrado.");
+    }
+    
+    // INSERTAR
+    
+    public void agregarLocal(Local nuevoLocal){
+        this.getLocales().insertarFin(nuevoLocal);
+    }
+    
+    public void agregarPagoLocalEnMes(String codigoLocal, Pago nuevoPago) {
+        Local localBuscado = this.getLocales().buscarDato(codigoLocal);
+        if (localBuscado != null) {
+            localBuscado.agregarPagoLocalEnMes(nuevoPago);
+            this.getLocales().modificarDato(codigoLocal, localBuscado);
         }
     }
     
@@ -84,6 +93,15 @@ public class Piso {
                 "\nCédula del encargado: " + this.getCedulaEncargado() + 
                 "\nCantidad de locales: " + this.getLocales().getSize() +
                 "\nLocales: \n" + locales;
+    }
+    
+    public String mostrarLocalPorCodigo(String codigoLocal) {
+        String localStr = "";
+        Local localBuscado = this.getLocales().buscarDato(codigoLocal);
+        if (localBuscado != null) {
+            localStr = localBuscado.toString();
+        }
+        return localStr;
     }
     // GETTER Y SETTER
 
@@ -188,18 +206,5 @@ public class Piso {
             nodoLocal = nodoLocal.getSiguiente();
         }
         return totalLocalesPagados;
-    }
-    
-    public static void main(String args[]){
-        Piso nuevoPiso = new Piso(1, "29582382", LocalDate.now());
-        Float mensualidadLocal = new Float(250.50);
-        Float mensualidadLocal2 = new Float(5000);
-        Local nuevoLocal = new Local("1", "12222773", mensualidadLocal);
-        Local nuevoLocal2 = new Local("2", "29668074", mensualidadLocal2);
-         
-        nuevoPiso.getLocales().insertarFin(nuevoLocal);
-        nuevoPiso.getLocales().insertarFin(nuevoLocal2);
-        
-        System.out.println(nuevoPiso.toString());
     }
 }

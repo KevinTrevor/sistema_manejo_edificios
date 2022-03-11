@@ -51,6 +51,12 @@ public class Local {
         this.setMontoMensualidad(montoMensualidad);
     }
     
+    // INSERTAR
+    
+    public void agregarPagoLocalEnMes(Pago nuevoPago) {
+        this.getRegistroPagos().insertarFin(nuevoPago);
+    }
+    
     // MOSTRAR
     
     @Override
