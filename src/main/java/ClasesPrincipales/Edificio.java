@@ -55,7 +55,7 @@ public class Edificio {
                listaPisos.setSize(listaPisos.getSize() + 1);
            }
            else{
-                while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso()){
+                while(nuevoPiso.getNumeroPiso() > auxiliar.getInfo().getNumeroPiso() && auxiliar.getSiguiente() != null){
                     auxiliar = auxiliar.getSiguiente();
                 }
            
