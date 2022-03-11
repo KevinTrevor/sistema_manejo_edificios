@@ -311,4 +311,22 @@ public class Edificio {
     public int getNumeroPisos(){
         return this.getPisos().getSize();
     }
+    
+    public String getCedulaEncargadoPiso(Integer numeroPiso){
+        String cedulaEncontrada = "";
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null){
+            cedulaEncontrada = pisoBuscado.getCedulaEncargado();
+        }
+        return cedulaEncontrada;
+    }
+    
+    public String getCedulaArrendatarioLocal(Integer numeroPiso, String codigoLocal){
+        String cedulaEncontrada = "";
+        Piso pisoBuscado = this.getPisos().buscarDato(numeroPiso);
+        if (pisoBuscado != null){
+            cedulaEncontrada = pisoBuscado.getCedulaArrendatarioLocal(codigoLocal);
+        }
+        return cedulaEncontrada;
+    }
 }

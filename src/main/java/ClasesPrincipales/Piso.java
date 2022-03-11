@@ -207,4 +207,13 @@ public class Piso {
         }
         return totalLocalesPagados;
     }
+    
+    public String getCedulaArrendatarioLocal(String codigoLocal){
+        String cedulaEncontrada = "";
+        Local localBuscado = this.getLocales().buscarDato(codigoLocal);
+        if (localBuscado != null){
+            cedulaEncontrada = localBuscado.getCedulaArrendatario();
+        }
+        return cedulaEncontrada;
+    }
 }

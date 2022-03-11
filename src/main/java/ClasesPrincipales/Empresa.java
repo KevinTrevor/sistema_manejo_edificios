@@ -35,7 +35,7 @@ public class Empresa {
         Nodo<Edificio> edificio = this.getEdificios().getInicio();
         while(edificio != null){
             edificiosStr = edificiosStr + 
-                    this.getEncargados().buscarDato(edificio.getInfo().getCedulaEncargado()).toString() 
+                    this.getEncargadoPorCedula(edificio.getInfo().getCedulaEncargado())
                     + "\n" + edificio.getInfo().toString()
                     + "\n=========================================\n";
             edificio = edificio.getSiguiente();
@@ -45,11 +45,11 @@ public class Empresa {
     
     public String mostrarLocalPorCodigo(String codigo, Integer numeroPiso, 
             String codigoLocal){
-        
         String localStr = "";
         Edificio edificioBuscado = this.getEdificios().buscarDato(codigo);
         if (edificioBuscado != null) {
-            localStr = edificioBuscado.mostrarLocalPorCodigo(numeroPiso, codigoLocal);
+            localStr = this.getArrendadoPorCedula(edificioBuscado.getCedulaArrendatarioLocal(numeroPiso, codigoLocal)) 
+                    + "\n" + edificioBuscado.mostrarLocalPorCodigo(numeroPiso, codigoLocal);
         }
         return localStr;
     }
@@ -214,7 +214,6 @@ public class Empresa {
         if (edificioBuscado != null){
             edificioBuscado.agregarPisos(nuevoPiso);
             this.getEdificios().modificarDato(codigo, edificioBuscado);
-            System.out.println("Test.");
         }
     }
     
@@ -291,6 +290,14 @@ public class Empresa {
         return montoRestante;
     }
     
+    public Encargado getEncargadoPorCedula(String cedula){
+        return this.getEncargados().buscarDato(cedula);
+    }
+    
+    public Arrendado getArrendadoPorCedula(String cedula){
+        return this.getArrendatarios().buscarDato(cedula);
+    }
+    
     public static void main(String args[]){
         Edificio nuevoEdificio = new Edificio("1", "Sunsol", "Nueva Esparta", 
                 "Porlamar, Calle Zamora", "29582382", LocalDate.now());
@@ -302,9 +309,12 @@ public class Empresa {
                 "kevintrevor@gmail.com", "02952690018", "04127955420", LocalDate.now());
         Encargado nuevoEncargado2 = new Encargado("3889777", "Yaritza", "Rodriguez", 
                 "viejitayara@gmail.com", "02952692313", "04123526289", LocalDate.now());
+        Arrendado nuevoArrendado = new Arrendado("12222773", "Luis", "Rojas", 
+                "luisgeronimo@gmail.com", "04120960038", LocalDate.now());
         
         nuevaEmpresa.agregarEncargado(nuevoEncargado);
         nuevaEmpresa.agregarEncargado(nuevoEncargado2);
+        nuevaEmpresa.agregarArrendatario(nuevoArrendado);
         
         nuevaEmpresa.agregarEdificios(nuevoEdificio);
         nuevaEmpresa.agregarEdificios(nuevoEdificio2);
@@ -321,6 +331,10 @@ public class Empresa {
         nuevoPiso.getLocales().insertarFin(nuevoLocal);
         nuevoPiso.getLocales().insertarFin(nuevoLocal2);
         
-        System.out.println(nuevaEmpresa.toString());
+        nuevaEmpresa.agregarPisosEnEdificio("1", nuevoPiso);
+        
+        System.out.println(nuevaEmpresa.mostrarLocalPorCodigo("1", 1, "1"));
+        
+        
     }
 }
