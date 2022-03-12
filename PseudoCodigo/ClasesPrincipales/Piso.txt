@@ -16,3 +16,132 @@ Piso = clase de
        fechaRegistro <- _fechaRegistro
 
        locales <- Nuevo(ListaEnlazada())
+
+       Metodo modificarPiso(cadena:cedulaEncargado,LocalDate:fechaRegistro)
+       setCedulaEncargado(cedulaEncargado)
+       setFechaRegistro(fechaRegistro)
+       FinMetodo
+
+       Metodo modificarLocal(cadena:codigoLocal,cadena:cedulaArrendatario,real:montoMensualidad)
+       localBuscado:Local
+       localBuscado <- getLocales().buscarDato(codigoLocal)
+       Si(localBuscado <> nulo)Entonces
+        localBuscado.modificarLocal(cedulaArrendatario,montoMensualidad)
+        getLocales().modificarDato(codigoLocal,localBuscado)
+       Finsi 
+       FinMetodo
+
+       Metodo agregarLocal(Local nuevoLocal)
+       getLocales().insertarFin(nuevoLocal)
+       FinMetodo
+
+       Metodo agregarPagoLocalMes(cadena: codigoLocal,Pago:nuevoPago)
+       localBuscado:Pago
+       localBuscado <-getLocales().buscarDato(codigoLocal)
+       Si(localBuscado <> nulo)Entonces
+        localBuscado.agregarPagoLocalMes(nuevoPago)
+        getLocales().modificarDato(codigoLocal,localBuscado)
+       Finsi 
+       FinMetodo
+
+       Metodo mostrarLocalPorCodigo(cadena:codigoLocal):cadena 
+       localstr:cadena
+       localBuscado:Local
+       localBuscado <- getLocales().buscarDato(codigoLocal)
+       Si(localBuscado <> nulo)Entonces
+        localstr <- localBuscado.mostrar()
+       Finsi
+       mostrarLocalPorCodigo <- localstr
+       FinMetodo
+
+       Metodo getNumeroPiso():entero
+        getNumeroPiso <- numeroPiso
+       FinMetodo
+       
+       Metodo setNumeroPiso(entero:_numeropiso)
+       numeroPiso <- _numeropiso
+       FinMetodo
+
+       Metodo getCedulaEncargado():cadena
+       getCedulaEncargado <- cedulaEncargado
+       FinMetodo
+
+       Metodo setCedulaEncargado(cadena:_cedulaEncargado)
+       cedulaEncargado <- _cedulaEncargado
+       FinMetodo
+
+       Metodo getFechaRegistro():LocalDate
+       getFechaRegistro <- fechaRegistro
+       FinMetodo
+
+       Metodo setFechaRegistro(LocalDate: _fechaRegistro)
+       fechaRegistro <- _fechaRegistro
+       FinMetodo
+
+       Metodo getLocales():ListaEnlazada de Local
+       getLocales <- locales
+       FinMetodo
+
+       Metodo getNumeroLocales():entero
+       getNumeroLocales <- locales.getSize()
+       FinMetodo
+
+       Metodo getMontoEnMes(cadena:mes):real
+       montoRecaudado: real
+       nodoLocal: Nodo de Local
+       montoRecaudado <- 0
+       nodoLocal <- getLocales().getInicio()
+       Mientras(nodoLocal <> null)Hacer
+        montoRecaudado <- montoRecaudado + nodoLocal.getInfo().getMontoEnMes(mes)
+        nodoLocal <- nodoLocal.getSiguiente()
+       Finmientras
+       getMontoEnMes <- montoRecaudado
+       FinMetodo
+
+       Metodo getRestanteEnMes(cadena:mes):real
+       montoRestante:real
+       nodoLocal: Nodo de Local
+       nodoLocal <- getLocales().getInicio()
+       Mientras(nodoLocal.getSiguiente() <> nulo)Hacer
+        montoRestante <- montoRestante + nodoLocal.getInfo().getRestanteEnMes(mes)
+        nodoLocal <- nodoLocal.getSiguiente()
+       Finmientras
+       getRestanteEnMes <- montoRestante
+       FinMetodo
+
+       Metodo getLocalesPagadosEnMes(cadena:mes):entero
+        totalLocalesPagados:entero
+        nodoLocal: nodo de Local
+        totalLocalesPagados <- 0
+        nodoLocal <- getLocales().getInicio()
+        Mientras(nodoLocal.getSiguiente() <> nulo)Hacer
+                Si(nodoLocal.getInfo().pagoEnMes(mes) = verdadero)Entonces
+                        totalLocalesPagados <- totalLocalesPagados + 1
+                Finsi
+        Finmientras
+        getLocalesPagadosEnMes <- totalLocalesPagados
+       FinMetodo
+
+       Metodo getLocalMenorA(entero:monto):entero
+       local:Nodo de Local
+       contador:entero
+       local <- getLocales().getInicio()
+       contador <- 0
+       Mientras(local <> nulo)Hacer
+        Si(local.getinfo().getMontoMensualidad() < monto)Entonces
+                contador <- contador + 1
+        Finsi
+        local <- local.getSiguiente()
+       Finmientras
+       getLocalMenorA <- contador
+       FinMetodo
+
+       Metodo getCedulaArrendatarioLocal(cadena:codigoLocal):cadena
+       cedulaEncontrada:cadena
+       localBuscado: nodo de Local
+       localBuscado <- getLocales().buscarDato(codigoLocal)
+       Si(localBuscado <> nulo)Entonces
+        cedulaEncontrada <- localBuscado.getCedulaArrendatario()
+       Finsi
+       getCedulaArrendatarioLocal <- cedulaEncontrada
+       FinMetodo

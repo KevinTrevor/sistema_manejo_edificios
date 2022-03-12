@@ -7,19 +7,241 @@ Edificio = clase de
            cedulaEncargado:cadena
            fechaCreacion:LocalDate <--Tipo de dato Fecha en Java--->
            pisos: ListaEnlazada de Piso
-           encargados: ListaEnlazada de Encargado
-           arrendatarios: ListaEnlazada de Arrendado
+           
            
             <--Metodos-->
 
            <--Constructor--->
-           Metodo Edificio(cadena:_codigo,cadena:_identificacion,cadena:_estado,cadena:_cedulaEncargado,LocalDate _fechaCreacion)
+           Metodo Edificio(cadena:_codigo,cadena:_identificacion,cadena:_estado,cadena:direccion,cadena:_cedulaEncargado,LocalDate _fechaCreacion)
            codigo <- _codigo
            identificacion <- _identificacion
            estado <- _estado
            cedulaEncargado <- _cedulaEncargado
            fechaCreacion <- _fechaCreacion
+           direccion <- _direccion
 
            pisos  <- Nuevo(ListaEnlazada())
-           encargados<- Nuevo(ListaEnlazada())
-           arrendatarios <- Nuevo(ListaEnlazada())
+           
+
+
+           Metodo agregarPisos(Piso:nuevoPiso)
+           nodoPiso:Nodo de Piso
+           listaPisos: ListaEnlazada de Piso
+           listaPisos <- getPisos()
+           nodoPiso <- Nodo(nuevoPiso)
+           Si(listaPisos.esVacia() = verdadero)Entonces
+            listaPisos.setInicio(nuevo)
+            listaPisos.setFin(nuevo)
+            listaPisos.setSize(listaPisos.getSize() + 1)
+           Sino
+            auxiliar: Nodo de Piso
+            auxiliar <- getPisos().getInicio()
+            Si(nuevoPiso.getNumeroPiso() < auxiliar.getinfo().getNumeroPiso())Entonces
+                nuevo.setSiguiente(auxiliar)
+                listaPisos.setInicio(nuevo)
+                listaPisos.setSize(listaPisos.getSize() + 1)
+            Sino
+                Mientras(nuevoPiso.getNumeroPiso() > auxiliar.getinfo().getNumeroPiso() && auxiliar.getSiguiente() <> nulo)Hacer
+                    auxiliar <- auxiliar.getSiguiente()
+                Finmientras
+                Si(auxiliar.getinfo().getNumeroPiso() = nuevoPiso.getNumeroPiso())Entonces
+                    Escribir "Ya existe un piso con este numero"
+                Sino
+                    Si(auxiliar.getinfo().getNumeroPiso() = listaPisos.getFin().getinfo().getNumeroPiso())Entonces
+                        auxiliar.setSiguiente(nuevo)
+                        listaPisos.setFin(nuevo)
+                    Sino
+                        nuevo.setSiguiente(auxiliar.getSiguiente())
+                        auxiliar.setSiguiente(nuevo)
+                    Finsi
+                    listaPisos.setSize(listaPisos.getSize()+ 1)
+                Finsi
+            Finsi
+           Finsi
+           FinMetodo
+
+           Metodo agregarLocal(entero:numeroPiso,Local nuevoLocal)
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo)Entonces
+            pisoBuscado.agregarLocal(nuevoLocal)
+           Finsi
+           FinMetodo
+
+           Metodo agregarPagoLocalMes(entero:numeroPiso,cadena:codigoLocal,Pago: nuevoPago)
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo ) Entonces
+            pisoBuscado.agregarPagoLocalMes(codigoLocal,nuevoPago)
+           Finsi
+           FinMetodo
+
+
+           Metodo modificarPiso(entero:numeroPiso,cadena:codigoLocal,cadena:cedulaArrendatario,real:montoMensualidad)
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo)Entonces
+            pisoBuscado(modificarLOcal(codigoLocal,cedulaArrendatario,montoMensualidad))
+            getPisos().modificarDato(numeroPiso,pisoBuscado)
+           Finsi
+           FinMetodo
+
+           Metodo modificarPiso(entero:numeroPiso,cadena:montoMensualidad,LocalDate fechaRegistro)
+           pisoBuscado:Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado<> nulo)Entonces
+            pisoBuscado.modificarPiso(cedulaEncargado,fechaRegistro)
+            getPisos().modificarDato(numeroPiso,pisoBuscado)
+           Finsi
+           FinMetodo
+
+
+           Metodo modificarEdificio(cadena: identificacion,cadena:estado,cadena:direccion,cadena:cedulaEncargado,LocalDate: fechaCreacion)
+           setIdentificacion(identificacion)
+           setEstado(estado)
+           setDireccion(direccion)
+           setCedulaEncargado(cedulaEncargado)
+           setfechaCreacion(fechaCreacion)
+           FinMetodo
+
+           Metodo eliminarPiso(entero:numeroPiso)
+           getPisos().eliminarDato(numeroPiso)
+           FinMetodo
+
+
+           Metodo mostrarLocalPorCodigo(entero:numeroPiso,cadena:codigoLocal)
+           localStr:cadena
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo)Entonces
+            localstr <- pisoBuscado.mostrarLocalPorCodigo(codigoLocal)
+           Finsi
+           mostrarLocalPorCodigo <- localstr
+           FinMetodo
+
+
+           Metodo getCodigo():cadena
+           getCodigoLocal <- codigo
+           FinMetodo
+
+           Metodo setCodigo(cadena:_codigo)
+           codigo <- _codigo
+           FinMetodo
+
+           Metodo getIdentificacion():cadena
+           getIdentificacion <- identificacion
+           FinMetodo
+
+           Metodo setIdentificacion(cadena:_identificacion)
+           identificacion <- _identificacion
+           FinMetodo
+
+           Metodo getEstado():cadena
+           getEstado <- estado 
+           FinMetodo
+
+           Metodo setEstado(cadena:_estado)
+           estado <- _estado
+           FinMetodo
+
+
+           Metodo getDireccion():cadena
+           getDireccion <- direccion
+           FinMetodo
+
+           Metodo setDireccion(cadena:_direccion)
+           direccion <- _direccion
+           FinMetodo
+
+           Metodo getCedulaEncargado():cadena
+           getCedulaEncargado <- cedulaEncargado
+           FinMetodo
+
+           Metodo setCedulaEncargado(cadena:_cedulaEncargado)
+           cedulaEncargado <- _cedulaEncargado
+           FinMetodo
+
+           Metodo getFechaCreacion():LocalDate
+           getFechaCreacion <- fechaCreacion
+           FinMetodo
+
+           Metodo setFechaCreacion(LocalDate: _fechacreacion)
+           fechaCreacion <- _fechacreacion
+           FinMetodo
+
+           Metodo getPisos():ListaEnlazada de Pisos
+           getPisos <- pisos
+           FinMetodo
+
+           Metodo getMontoEnMes(cadena:mes):real
+           montoRestante:real
+           nodoPiso: Nodo de Piso
+           nodoPiso <- getPisos().getInicio()
+           montoRestante <- 0
+           Mientras(nodoPiso <> nulo)Hacer
+            montoRestante <- montoRestante + nodoPiso.getinfo().getRestanteEnMes(mes)
+            piso <- piso.getSiguiente()
+           Finmientras
+           getMontoEnMes <- montoRestante
+           FinMetodo
+
+           Metodo getMontoEnMes(cadena:mes):real
+           montoRecaudado:real
+           nodoPiso: Nodo de Piso
+           nodoPiso<- getPisos().getInicio()
+           montoRecaudado <- 0
+           Mientras(nodoPiso <> nulo)Hacer
+            montoRecaudado <- montoRecaudado + nodoPiso.getInfo().getMontoEnMes(mes)
+            nodoPiso <- nodoPiso.getSiguiente()
+           Finmientras
+           getMontoEnMes <- montoRecaudado
+           FinMetodo
+
+           Metodo getNumeroLocales():entero
+           totalLocales:entero
+           piso:Nodo de Piso
+           piso <- getPisos().getInicio()
+           totalLocales <- 0
+           Mientras(piso <> nulo)Hacer
+            totalLocales<- totalLocales + piso.getInfo().getNumeroLocales()
+            piso <- piso.getSiguiente()
+           Finmientras
+           getNumeroLocales <- totalLocales
+           FinMetodo
+
+           Metodo getLocalesMontoMenorA(entero:monto):entero
+           piso: Nodo de Piso
+           contador:entero
+           piso <- getPisos().getInicio()
+           contador <- 0
+           Mientras(piso <> nulo)Hacer
+            contador <- contador + piso.getinfo().getLocalMenorA(monto)
+            piso <- piso.getSiguiente(0)
+           Finmientras
+           getLocalesMontoMenorA <- contador
+           FinMetodo
+
+
+           Metodo getNumeroPisos():entero
+           getNumeroPisos <- getPisos().getSize()
+           FinMetodo
+
+           Metodo getCedulaEncargadoPiso(entero:numeroPiso)
+           cedulaEncontrada:cadena
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo)Entonces
+            cedulaEncontrada <- pisoBuscado.getCedulaEncargado()
+           Finsi
+           getCedulaEncargadoPiso <- cedulaEncontrada
+           FinMetodo
+
+           Metodo getCedulaArrendatarioLocal(entero:numeroPiso,cadena:codigoLocal)
+           cedulaEncontrada:cadena
+           pisoBuscado: Piso
+           pisoBuscado <- getPisos().buscarDato(numeroPiso)
+           Si(pisoBuscado <> nulo)Entonces
+            cedulaEncontrada <- pisoBuscado.getCedulaArrendatarioLocal(codigoLocal)
+           Finsi           
+           getCedulaArrendatarioLocal(cedulaEncontrada)
+           FinMetodo

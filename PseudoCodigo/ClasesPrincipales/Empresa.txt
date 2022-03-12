@@ -2,9 +2,220 @@ Empresa = clase de
             <---Atributos--->
 
           edificios: ListaEnlazada de Edificio
+          encargados: ListaEnlazada de Encargado
+          arrendatarios: ListaEnlazada de Arrendatarios 
 
             <---Metodos--->
           <---Constructor--->
           Metodo Edificio()
           edificios<- Nuevo(ListaEnlazada())
-        
+          encargados <- Nuevo(ListaEnlazada())
+          arrendatarios <- Nuevo(ListaEnlazada())
+          FinMetodo
+
+
+          Metodo mostrarEdificios():cadena
+          edificioStr:cadena
+          edificio: Nodo de Edificio
+          Mientras(edificio <> nulo)Hacer
+            edificioStr <- edificioStr + getEncargadoPorCedula(edificio.getinfo().getCedulaEncargado()) + edificio.getinfo().mostrar()
+            edificio <- edificio.getSiguiente()
+          Finmientras
+          mostrarEdificios<- edificioStr
+          FinMetodo
+
+          Metodo mostrarLocalPorCodigo(cadena:codigo,entero:numeroPiso,cadena:codigoLocal)
+          localStr:cadena
+          edificioBuscado: Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            localstr <- getArrendadoPorCedula(edificioBuscado.getCedulaArrendatarioLocal(numeroPiso,codigoLocal)) + edificioBuscado.mostrarLocalPorCodigo(numeroPiso,codigoLocal)
+
+          Finsi
+          mostrarLocalPorCodigo <- localstr
+          FinMetodo
+
+
+          Metodo mostrarEdificioPorCodigo(cadena:codigo)
+          edificioStr:cadena
+          edificio:Edificio
+          edificio <- getEdificios().buscarDato(codigo)
+          Si(edificio <> nulo)Entonces
+            edificioStr <-  getEncargadoPorCedula(edificio.getCedulaEncargado()) + edificio.mostrar()
+          Finsi
+          FinMetodo
+
+          Metodo modificarEncargado(cadena:cedula,cadena:nombre,cadena:apellido,cadena:correo,cadena:telefono,cadena:telefonoMovil,LocalDate fechaContrato)
+          encargadoBuscado: Encargado
+          encargadoBuscado <- getEncargados().buscarDato(cedula)
+          Si(encargadoBuscado <> nulo)Entonces
+            encargadoBuscado.modificarEncargado(nombre,apellido,correo,telefono,telefonoMovil,fechaContrato)
+            getEncargados().modificarDato(cedula,encargadoBuscado)
+          Finsi
+          FinMetodo
+
+          Metodo modificarArrendatario(cadena:cedula,cadena:nombre,cadena:apellido,cadena:correo,cadena:telefono,LocalDate FechaAsignacion)
+          arrendatarioBuscado: Arrendatario
+          arrendatarioBuscado <- getArrendatarios().buscarDato(cedula)
+          Si(arrendatarioBuscado <> nulo)Entonces
+            arrendatarioBuscado.modificarArrendatario(nombre,apellido,correo,telefono,FechaAsignacion)
+            getArrendatarios().modificarDato(cedula,arrendatarioBuscado)
+          Finsi
+          
+          FinMetodo
+
+          Metodo modificarLocal(cadena:codigo,entero:numeroPiso,cadena:codigoLocal,cadena:cedulaArrendatario,real:montoMensualidad)
+          edificioBuscado: Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.modificarLocal(numeroPiso,codigoLocal,cedulaArrendatario,montoMensualidad)
+            getEdificios().modificarDato(codigo,edificioBuscado)
+          Finsi
+          FinMetodo
+
+
+          Metodo modificarPiso(cadena:codigo,entero:numeroPiso,cadena:cedulaEncargado,LocalDate: fechaRegistro)
+          edificioBuscado:Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.modificarPiso(numeroPiso,cedulaEncargado,fechaRegistro)
+            getEdificios().modificarDato(codigo,edificioBuscado)
+          Finsi
+          FinMetodo
+
+          Metodo modificarEdificio(cadena:codigo,cadena:identificacion,cadena:estado,cadena:direccion,cadena:cedulaEncargado,LocalDate: _fechaCreacion)
+          edificioBuscado:Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigoLocal)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.modificarEdificio(identificacion,estado,direccion,cedulaEncargado,fechaCreacion)
+            getEdificios().modificarDato(codigo,edificioBuscado)
+          Finsi
+          FinMetodo
+
+
+          Metodo eliminarEdificio(cadena:codigo)
+          getEdificios().eliminarDato(codigo)
+          FinMetodo
+
+
+          Metodo eliminarPiso(cadena:codigo,entero:numeroPiso)
+          edificioBuscado:Edificio
+          edificio <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.eliminarPiso(numeroPiso)
+            getEdificios().modificarDato(codigo,edificioBuscado)
+          Finsi
+          FinMetodo
+
+          Metodo agregarEdificios(Edificio: nuevoEdificio)
+          nuevo:Nodo de Edificio
+          nuevo <- nuevoEdificio
+          listaEdificios: ListaEnlazada de Edificio
+          listaEdificios <- getEdificios()
+
+          Si(listaEdificios.estaVacio())Entonces
+            listaEdificios.setInicio(nuevo)
+            listaEdificios.setFin(nuevo)
+            listaEdificios.setSize(listaEdificios.getSize()  + 1)
+          Sino
+            auxiliar: Nodo de Edificio
+            auxiliar <- listaEdificios.getInicio()
+            Si(nuevoEdificio.getCodigoLocal().compareTo(auxiliar.getInfo().getCodigo()) < 0)Entonces
+              nuevo.setSiguiente(auxiliar)
+              listaEdificios.setInicio(nuevo)
+              listaEdificios.setSize(listaEdificios.getSize() + 1)
+            Sino
+              Mientras(nuevoEdificio.getCodigo().compareTo(auxiliar.getinfo().getCodigo())>0 && auxiliar.getSiguiente() <> nulo)Hacer
+                auxiliar <- auxiliar.getSiguiente()
+              Finmientras
+              Si(auxiliar.getinfo().getCodigo().equals(nuevoEdificio.getCodigo()) = verdaero)Entonces
+                Escribir "Ya existe un edificio"
+              Sino
+                nuevo.setSiguiente(auxiliar.getSiguiente())
+                auxiliar.setSiguiente(nuevo)
+              Finsi
+              listaEdificios.setSize(listaEdificios.getSize() + 1)
+            Finsi 
+          Finsi
+          FinMetodo
+
+
+
+          Metodo agregarEncargado(Encargado:nuevoEncargado)
+          getEncargados().insertarFin(nuevoEncargado)
+          FinMetodo
+
+          Metodo agregarArrendatario(Arrendado: nuevoArrendado)
+          getArrendatarios().insertarFin(nuevoArrendado)
+          FinMetodo
+
+          Metodo agregarPisosEnEdificio(cadena:codigo,Piso:nuevoPiso)
+          edificioBuscado:Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces 
+            edificioBuscado.agregarPisos(nuevoPiso)
+            getEdificios().modificarDato(codigo,edificioBuscado)
+          Finsi
+          FinMetodo
+
+
+          Metodo agregarLocal(cadena:codigo,entero:numeroPiso,Local:nuevoLocal)
+          edificioBuscado:Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.agregarLocal(numeroPiso,nuevoLocal)
+          Finsi
+          FinMetodo
+
+
+          Metodo agregarPagoLocalEnMes(cadena:codigo,entero:numeroPiso,cadena:codigoLocal,Pago:nuevoPago)
+          edificioBuscado:Edificio
+          edificioBuscado <- getEdificios().buscarDato(codigo)
+          Si(edificioBuscado <> nulo)Entonces
+            edificioBuscado.agregarPagoLocalEnMes(numeroPiso,codigoLocal,nuevoPago)
+          Finsi
+          FinMetodo
+
+          Metodo getEdificios():ListaEnlazada de Edificio
+          getEdificios<- edificios
+          FinMetodo
+          Metodo getEncargados():ListaEnlazada de Encargado
+          getEncargados <- encargados
+          FinMetodo
+          Metodo getArrendatarios():Lista Enlazada de Arrendatarios
+          getArrendatarios <- arrendatarios
+          FinMetodo
+
+
+          Metodo getMontoEnMes(cadena:mes):real
+          montoRecaudado:real
+          nodoEdificio: Nodo de Edificio
+          nodoEdificio <- getEdificios().getInicio()
+          montoRecaudado <- 0
+          Mientras(nodoEdificio <> nulo)Hacer
+            montoRecaudado <- montoRecaudado + nodoEdificio.getInfo().getMontoEnMes(mes)
+            nodoEdificio <- nodoEdificio.getSiguiente()
+          Finmientras
+          getMontoEnMes <- montoRecaudado
+          FinMetodo 
+
+          Metodo getRestanteEnMes(cadena:mes):real
+          montoRestante:real
+          nodoEdificio: Nodo de Edificio
+          montoRestante <- 0
+          nodoEdificio <- getEdificios().getInicio()
+          Mientras(nodoEdificio <> nulo)Hacer
+            montoRestante <- montoRestante + nodoEdificio.getinfo().getRestanteEnMes(mes)
+            nodoEdificio<- nodoEdificio.getSiguiente()
+          Finmientras
+          getRestanteEnMes <- montoRestante
+          FinMetodo
+
+          Metodo getEncargadoPorCedula(cadena:cedula):Encargado
+          getEncargadoPorCedula <- getEncargados().buscarDato(cedula)
+          FinMetodo
+
+          Metodo getArrendadoPorCedula(cadena:cedula):Arrendado
+          getArrendatarios().buscarDato(cedula)
+          FinMetodo
+

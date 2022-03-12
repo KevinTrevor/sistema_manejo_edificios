@@ -16,3 +16,80 @@ Local = clase de
         montoMensualidad <- _montoMensualidad
         registroPagos<- Nueva(ListaEnlazada())
 
+        Metodo getRegistroPago():ListaEnlazada de Pago
+        getRegistroPago <- registroPagos
+        FinMetodo
+        
+        Metodo getMontoEnMes(cadena: mes):real
+        montoRecaudado:real
+        nodoPago: Nodo de Pago
+        nodoPago <- getRegistroPago().getInicio()
+        montoRecaudado <- 0
+        Mientras(nodoPago <> nulo)Hacer
+        
+            Si(nodoPago.getInfo().getMes() == mes)Entonces
+                montoRecaudado <- montoRecaudado + nodoPago.getInfo().getMontoCancelado()
+            Finsi
+            nodoPago <- nodoPago.getSiguiente()
+        Finmientras
+        getMontoEnMes <- montoRecaudado
+        FinMetodo
+
+        Metodo getRestanteEnMes(cadena: mes):real
+        montoRestante:real
+        nodoPago: Nodo de Pago
+        montoRestante <- 0
+        nodoPago <- getRegistroPago().getInicio()
+
+        Mientras(nodoPago <> nulo)Hacer
+        
+            Si(nodoPago.getInfo().getMes() == mes)Entonces
+                montoRestante <- montoRestante + nodoPago.getInfo().getMontoRestante()
+
+            Finsi
+            nodoPago <- nodoPago.getSiguiente()
+        
+        Finmientras
+        getRestanteEnMes <- montoRestante
+        FinMetodo
+
+        Metodo pagoEnMes():booleano
+        banderaPago:booleano
+        nodoPago: Nodo de Pago
+        nodoPago <- getRegistroPago().getInicio()
+        banderaPago <- falso
+        Mientras(nodoPago <> null )Hacer
+            Si(nodoPago.getInfo().getMes == mes)Entonces
+                banderaPago <- verdadero
+            Finsi
+            nodoPago <- nodoPago.getSiguiente()
+        Finmientras
+        pagoEnMes <- banderaPago
+        FinMetodo
+
+
+        Metodo getCodigoLocal():cadena
+        getCodigoLocal <- codigoLocal
+        FinMetodo
+
+        Metodo setCodigoLocal(cadena:_codigoLocal)
+        codigoLocal <- _codigoLocal
+        FinMetodo
+
+        Metodo getCedulaArrendatario():cadena
+            getCedulaArrendatario <- cedulaArrendatario
+        FinMetodo
+
+        Metodo setCedulaArrendatario(cadena:_cedulaArrendatario)
+            cedulaArrendatario <- _cedulaArrendatario
+        FinMetodo
+
+        Metodo getMontoMensualidad():real
+        getMontoMensualidad <- montoMensualidad
+        FinMetodo
+
+        Metodo setMontoMensualidad(real:_montoMensualidad);
+        montoMensualidad <- _montoMensualidad
+        FinMetodo
+
+        

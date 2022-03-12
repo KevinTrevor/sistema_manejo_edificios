@@ -1,17 +1,58 @@
 Pago = clase de
 
         <--Atributos--->
-       mes,fechaPago: LocalDate <--Tipo de dato de Java--->
+       fechaPago: LocalDate <--Tipo de dato de Java--->
        montoCancelado,montoRestante: real
-       CedulaArrendatario:cadena
+       CedulaArrendatario,mes:cadena
 
 
         <--Metodos--->
 
        <---Constructor--->
-       Metodo Pago(LocalDate _mes,LocalDate _fechaPago,real:_montoCancelado,real:montoRestante,cadena:_cedulaArrendatario)
+       Metodo Pago(cadena: _mes,LocalDate: _fechaPago,real:_montoCancelado,real:montoRestante,cadena:_cedulaArrendatario)
        mes <- mes 
        fechaPago <- _fechaPago
        montoCancelado <- _montoCancelado
        montoRestante <- _montoRestante
        cedulaArrendatario <- _cedulaArrendatario
+
+       Metodo getMes():cadena
+       getMes<- mes 
+       FinMetodo
+
+       Metodo setMes(cadena: _mes)
+       mes <- _mes
+       FinMetodo
+
+       Metodo getFechaPago():LocalDate
+       getFechaPago <- fechaPago
+       FinMetodo
+
+       Metodo setFechaPago(LocalDate _fechaPago)
+       fechaPago <- _fechaPago
+       FinMetodo
+
+       Metodo getMontoCancelado():real
+       getMontoCancelado <- montoCancelado
+       FinMetodo
+
+       Metodo setMontoCancelado(real:_montoCancelado)
+       montoCancelado <- _montoCancelado
+       FinMetodo
+       
+       Metodo getMontoRestante():real
+       getMontoCancelado <- montoRestante
+       FinMetodo
+
+       Metodo setMontoRestante(real:_montoRestante)
+       montoRestante<- _montoRestante
+       FinMetodo
+
+       Metodo getCedulaArrendatario():cadena
+       getCedulaArrendatario <- cedulaArrendatario
+       FinMetodo
+
+       Metodo setCedulaArrendatario(cadena:_cedulaArrendatario)
+       cedulaArrendatario<- _cedulaArrendatario
+       
+       FinMetodo
